@@ -9,6 +9,10 @@ export const useFavoriteStore = defineStore(STORE_NAME, {
     isOpen: false,
     favorites: useStorage<Movie[]>(STORE_NAME, []),
   }),
+  getters: {
+    favoritesCount: (state) => state.favorites.length,
+    getFavoritesItems: (state) => state.favorites.filter((movie) => movie !== null),
+  },
   actions: {
     closeDrawer() {
       this.isOpen = false
