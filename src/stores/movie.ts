@@ -36,12 +36,12 @@ export const useMovieStore = defineStore('movie', {
           id: movie.id,
           title: movie.title,
           posterPath: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
-          voteAverage: movie.vote_average.toFixed(1),
+          voteAverage: movie.vote_average.toFixed(1) || 3.7,
           releaseDate: movie.release_date,
           genre: TMDB_GENRE_MAP[movie.genre_ids[0] as keyof typeof TMDB_GENRE_MAP],
           price: (
-            Number(movie.vote_average.toFixed(1)) *
-            Number(movie.vote_average.toFixed(1)) *
+            (Number(movie.vote_average.toFixed(1)) || 3.7) *
+            (Number(movie.vote_average.toFixed(1)) || 3.7) *
             100
           ).toFixed(),
         }))
