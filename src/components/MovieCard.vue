@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { useCartStore } from '@/stores/cart'
 import { computed } from 'vue'
 import { useFavoriteStore } from '@/stores/favorite'
+import { useCurrency } from '@/composables/currency'
 
 const props = defineProps<{
   movie: Movie
@@ -13,6 +14,7 @@ const props = defineProps<{
 
 const cartStore = useCartStore()
 const favoriteStore = useFavoriteStore()
+const { formatCurrency } = useCurrency()
 
 const addMovieToCart = () => {
   cartStore.addItem(props.movie)
@@ -41,7 +43,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
         </div>
         <span class="text-sm text-gray-500">{{ movie.genre }}</span>
       </div>
-      <span class="text-sm text-gray-500">{{ movie.price }}</span>
+      <span class="text-sm text-gray-500">{{ formatCurrency(Number(movie.price)) }}</span>
     </div>
     <Button
       class="w-full"

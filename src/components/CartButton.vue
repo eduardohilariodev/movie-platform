@@ -8,7 +8,7 @@ const addToCart = () => {
   cartStore.toggleDrawer()
 }
 
-const { itemsCount } = storeToRefs(cartStore)
+const { cartItemsCount: itemsCount } = storeToRefs(cartStore)
 </script>
 
 <template>

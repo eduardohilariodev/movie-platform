@@ -5,7 +5,7 @@ import { toast } from 'vue-sonner'
 
 const STORE_NAME = 'cart'
 
-export const useCartStore = defineStore('cart', {
+export const useCartStore = defineStore(STORE_NAME, {
   state: () => ({
     items: useStorage<Movie[]>(STORE_NAME, []),
     isOpen: false,
@@ -24,6 +24,9 @@ export const useCartStore = defineStore('cart', {
         })
       }
     },
+    closeDrawer() {
+      this.isOpen = false
+    },
     toggleDrawer() {
       this.isOpen = !this.isOpen
     },
@@ -41,8 +44,8 @@ export const useCartStore = defineStore('cart', {
     },
   },
   getters: {
-    itemsCount: (state) => state.items.length || 0,
-    totalPrice: (state) => state.items.reduce((acc, item) => acc + item.price, 0).toFixed(2),
-    getItems: (state) => state.items.filter((item) => item !== null),
+    cartItemsCount: (state) => state.items.length || 0,
+    totalPrice: (state) => state.items.reduce((acc, item) => acc + Number(item.price), 0),
+    getCartItems: (state) => state.items.filter((item) => item !== null),
   },
 })

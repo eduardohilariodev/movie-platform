@@ -33,11 +33,17 @@ export const useMovieStore = defineStore('movie', {
         })
         const data = await response.json()
         this.movies = data.results.map((movie: MovieResponse) => ({
-          ...movie,
+          id: movie.id,
+          title: movie.title,
           posterPath: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
           voteAverage: movie.vote_average.toFixed(1),
           releaseDate: movie.release_date,
           genre: TMDB_GENRE_MAP[movie.genre_ids[0] as keyof typeof TMDB_GENRE_MAP],
+          price: (
+            Number(movie.vote_average.toFixed(1)) *
+            Number(movie.vote_average.toFixed(1)) *
+            100
+          ).toFixed(),
         }))
       } catch (error) {
         console.error(error)

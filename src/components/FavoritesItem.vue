@@ -5,13 +5,14 @@ import { Button } from '@/components/ui/button'
 import { ShoppingCart, Trash } from 'lucide-vue-next'
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { useFavoriteStore } from '@/stores/favorite'
-
+import { useCurrency } from '@/composables/currency'
 const props = defineProps<{
   movie: Movie
 }>()
 
 const cartStore = useCartStore()
 const favoriteStore = useFavoriteStore()
+const { formatCurrency } = useCurrency()
 </script>
 
 <template>
@@ -24,7 +25,7 @@ const favoriteStore = useFavoriteStore()
       />
       <div class="flex flex-col">
         <span class="text-sm font-bold">{{ props.movie.title }}</span>
-        <span class="text-sm">{{ props.movie.price }}</span>
+        <span class="text-sm">{{ formatCurrency(Number(props.movie.price)) }}</span>
       </div>
     </div>
     <div class="flex gap-2">
