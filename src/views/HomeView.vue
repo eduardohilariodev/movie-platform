@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import HomeMovieGrid from '@/components/HomeMovieGrid.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <HomeMovieGrid />
   </main>
 </template>
