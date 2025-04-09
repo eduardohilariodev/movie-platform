@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import MovieCard from '@/components/MovieCard.vue'
+import { useMovieStore } from '@/stores/movie'
+
+const movieStore = useMovieStore()
 </script>
 
 <template>
-  <Card>
-    <CardHeader>
-      <CardTitle>Card Title</CardTitle>
-      <CardDescription>Card Description</CardDescription>
-    </CardHeader>
-    <CardContent> Card Content </CardContent>
-    <CardFooter> Card Footer </CardFooter>
-  </Card>
+  <div class="grid grid-cols-4 gap-4">
+    <MovieCard v-for="movie in movieStore.movies" :key="movie.id" :movie="movie" />
+  </div>
 </template>
