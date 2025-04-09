@@ -1,10 +1,13 @@
 import type { Movie } from '@/types'
+import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { toast } from 'vue-sonner'
 
+const STORE_NAME = 'cart'
+
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    items: [] as Movie[],
+    items: useStorage<Movie[]>(STORE_NAME, []),
     isOpen: false,
   }),
   actions: {

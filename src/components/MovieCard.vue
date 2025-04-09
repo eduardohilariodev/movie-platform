@@ -28,7 +28,7 @@ const isInCart = computed(() => {
         <LikeButton class="self-end" :is-active="false" />
         <span class="text-white">{{ movie.releaseDate }}</span>
       </div>
-      <img :src="movie.poster_path" :alt="movie.title" class="size-full bg-gray-300 object-cover" />
+      <img :src="movie.posterPath" :alt="movie.title" class="size-full bg-gray-300 object-cover" />
     </div>
     <div class="flex flex-col items-center justify-center">
       <span class="text-lg font-bold">{{ movie.title }}</span>
@@ -36,7 +36,7 @@ const isInCart = computed(() => {
       <div class="flex gap-4">
         <div class="flex items-center gap-2">
           <Star class="text-gray-500" />
-          <span class="text-sm font-bold text-gray-500">{{ movie.rating }}</span>
+          <span class="text-sm font-bold text-gray-500">{{ movie.voteAverage }}</span>
         </div>
         <span class="text-sm text-gray-500">{{ movie.genre }}</span>
       </div>
