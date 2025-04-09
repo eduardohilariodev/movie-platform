@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Button } from "@/components/ui/button";
+
 import { ref } from "vue";
 
 defineProps<{ msg: string }>();
@@ -17,6 +19,8 @@ const count = ref(0);
       to test HMR
     </p>
   </div>
+
+  <Button>Click me</Button>
 
   <p>
     Check out
