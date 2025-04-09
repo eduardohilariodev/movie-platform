@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import SearchInput from '@/components/SearchInput.vue'
-import { Heart } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 import CartButton from '@/components/CartButton.vue'
+import FavoritesButton from '../FavoritesButton.vue'
 </script>
 
 <template>
@@ -15,7 +15,7 @@ import CartButton from '@/components/CartButton.vue'
     </nav>
     <SearchInput />
     <div class="flex items-center gap-4">
-      <Heart class="text-gray-500" />
+      <FavoritesButton />
       <CartButton />
     </div>
   </header>

@@ -24,7 +24,7 @@ export const useCartStore = defineStore('cart', {
         })
       }
     },
-    toggleCart() {
+    toggleDrawer() {
       this.isOpen = !this.isOpen
     },
     removeItem(item: Movie) {

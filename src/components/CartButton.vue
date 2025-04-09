@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia'
 const cartStore = useCartStore()
 
 const addToCart = () => {
-  cartStore.toggleCart()
+  cartStore.toggleDrawer()
 }
 
 const { itemsCount } = storeToRefs(cartStore)

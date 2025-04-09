@@ -5,6 +5,7 @@ import { RouterView } from 'vue-router'
 import { Toaster } from 'vue-sonner'
 import { useAuthStore } from '@/stores/auth'
 import { onMounted } from 'vue'
+import FavoritesDrawer from '@/components/FavoritesDrawer.vue'
 
 const authStore = useAuthStore()
 
@@ -18,6 +19,7 @@ onMounted(() => {
   <AppHeader />
 
   <main class="relative h-full">
+    <FavoritesDrawer />
     <CartDrawer />
     <RouterView />
   </main>
