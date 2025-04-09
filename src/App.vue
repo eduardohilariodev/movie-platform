@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import Header from '@/components/Header.vue'
+import AppHeader from '@/components/layout/AppHeader.vue'
+import CartDrawer from '@/components/CartDrawer.vue'
+import { RouterView } from 'vue-router'
+import { Toaster } from 'vue-sonner'
 </script>
 
 <template>
-  <div class="wrapper">
-    <Header />
-  </div>
+  <Toaster />
+  <AppHeader />
 
-  <RouterView />
+  <main class="relative h-full">
+    <CartDrawer />
+    <RouterView />
+  </main>
 </template>

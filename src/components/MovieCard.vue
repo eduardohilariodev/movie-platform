@@ -3,10 +3,22 @@ import type { Movie } from '@/types'
 import LikeButton from '@/components/LikeButton.vue'
 import { Star } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
+import { useCartStore } from '@/stores/cart'
+import { computed } from 'vue'
 
 const props = defineProps<{
   movie: Movie
 }>()
+
+const cartStore = useCartStore()
+
+const addMovieToCart = () => {
+  cartStore.addItem(props.movie)
+}
+
+const isInCart = computed(() => {
+  return cartStore.items.find((i) => i.id === props.movie.id)
+})
 </script>
 
 <template>
@@ -30,6 +42,11 @@ const props = defineProps<{
       </div>
       <span class="text-sm text-gray-500">{{ movie.price }}</span>
     </div>
-    <Button>Adicionar</Button>
+    <Button
+      class="w-full"
+      @click="isInCart ? cartStore.removeItem(movie) : cartStore.addItem(movie)"
+    >
+      {{ isInCart ? 'Remover' : 'Adicionar' }}
+    </Button>
   </div>
 </template>
