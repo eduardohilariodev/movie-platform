@@ -1,4 +1,16 @@
 <script setup lang="ts">
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+
+import { useRouter } from 'vue-router'
+
 import { useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
 import { useForm } from 'vee-validate'
@@ -9,8 +21,11 @@ import { vMaska } from 'maska/vue'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
+import { ref } from 'vue'
 const cartStore = useCartStore()
 const { getCartItems: getItems } = storeToRefs(cartStore)
+
+const router = useRouter()
 
 const { formatCurrency } = useCurrency()
 
@@ -40,7 +55,7 @@ const formSchema = toTypedSchema(
   }),
 )
 
-const { handleSubmit } = useForm({
+const { handleSubmit, values } = useForm({
   validationSchema: formSchema,
   initialValues: {
     fullName: '',
@@ -54,6 +69,8 @@ const { handleSubmit } = useForm({
   },
 })
 
+const isCheckoutSuccessful = ref(false)
+
 const onSubmit = handleSubmit((values) => {
   // Remove masks from form values
   const cleanedValues = {
@@ -62,6 +79,8 @@ const onSubmit = handleSubmit((values) => {
     phone: values.phone.replace(/\D/g, ''),
     cep: values.cep.replace(/\D/g, ''),
   }
+
+  isCheckoutSuccessful.value = true
 
   console.log('Form submitted!', cleanedValues)
 })
@@ -277,4 +296,16 @@ const onSubmit = handleSubmit((values) => {
       </div>
     </div>
   </div>
+
+  <AlertDialog :open="isCheckoutSuccessful">
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Obrigado, {{ values.fullName }}!</AlertDialogTitle>
+        <AlertDialogDescription> Sua compra foi finalizada com sucesso! </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogAction @click="router.push('/')">Ir para a loja</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
 </template>
