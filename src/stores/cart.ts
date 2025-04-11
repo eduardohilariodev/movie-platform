@@ -2,13 +2,14 @@ import type { Movie } from '@/types'
 import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { toast } from 'vue-sonner'
-
+import router from '@/router'
 const STORE_NAME = 'cart'
 
 export const useCartStore = defineStore(STORE_NAME, {
   state: () => ({
     items: useStorage<Movie[]>(STORE_NAME, []),
     isOpen: false,
+    isSuccessDialogOpen: false,
   }),
   actions: {
     addItem(item: Movie) {
@@ -41,6 +42,14 @@ export const useCartStore = defineStore(STORE_NAME, {
       toast('Carrinho esvaziado', {
         description: 'Todos os filmes foram removidos do carrinho',
       })
+    },
+    startCheckout() {
+      this.isSuccessDialogOpen = true
+    },
+    finishCheckout() {
+      this.items = []
+      this.isSuccessDialogOpen = false
+      router.push('/')
     },
   },
   getters: {

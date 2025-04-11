@@ -9,8 +9,6 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 
-import { useRouter } from 'vue-router'
-
 import { useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
 import { useForm } from 'vee-validate'
@@ -21,11 +19,8 @@ import { vMaska } from 'maska/vue'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
-import { ref } from 'vue'
 const cartStore = useCartStore()
-const { getCartItems: getItems } = storeToRefs(cartStore)
-
-const router = useRouter()
+const { getCartItems, isSuccessDialogOpen } = storeToRefs(cartStore)
 
 const { formatCurrency } = useCurrency()
 
@@ -69,10 +64,7 @@ const { handleSubmit, values } = useForm({
   },
 })
 
-const isCheckoutSuccessful = ref(false)
-
 const onSubmit = handleSubmit((values) => {
-  // Remove masks from form values
   const cleanedValues = {
     ...values,
     cpf: values.cpf.replace(/\D/g, ''),
@@ -80,9 +72,9 @@ const onSubmit = handleSubmit((values) => {
     cep: values.cep.replace(/\D/g, ''),
   }
 
-  isCheckoutSuccessful.value = true
-
   console.log('Form submitted!', cleanedValues)
+
+  cartStore.startCheckout()
 })
 </script>
 
@@ -221,7 +213,7 @@ const onSubmit = handleSubmit((values) => {
       </div>
 
       <div class="rounded-lg bg-white p-6 shadow">
-        <div v-if="getItems.length > 0">
+        <div v-if="getCartItems.length > 0">
           <div class="mb-4 grid grid-cols-4 gap-2 font-semibold">
             <div>Imagem</div>
             <div>Nome</div>
@@ -230,7 +222,7 @@ const onSubmit = handleSubmit((values) => {
           </div>
 
           <div
-            v-for="item in getItems"
+            v-for="item in getCartItems"
             :key="item.id"
             class="mb-4 grid grid-cols-4 items-center gap-2 border-b pb-4"
           >
@@ -297,14 +289,14 @@ const onSubmit = handleSubmit((values) => {
     </div>
   </div>
 
-  <AlertDialog :open="isCheckoutSuccessful">
+  <AlertDialog :open="isSuccessDialogOpen">
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogTitle>Obrigado, {{ values.fullName }}!</AlertDialogTitle>
         <AlertDialogDescription> Sua compra foi finalizada com sucesso! </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogAction @click="router.push('/')">Ir para a loja</AlertDialogAction>
+        <AlertDialogAction @click="cartStore.finishCheckout">Ir para a loja</AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
