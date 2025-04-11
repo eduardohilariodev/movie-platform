@@ -4,11 +4,11 @@ import { storeToRefs } from 'pinia'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
+import { vMaska } from 'maska/vue'
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
-
 const cartStore = useCartStore()
 const { getCartItems: getItems } = storeToRefs(cartStore)
 
@@ -16,23 +16,54 @@ const { formatCurrency } = useCurrency()
 
 const formSchema = toTypedSchema(
   z.object({
-    fullName: z.string().min(2, 'Nome completo deve ter pelo menos 2 caracteres').max(50),
-    cpf: z.string().min(11, 'CPF inválido'),
-    phone: z.string().min(10, 'Número de telefone inválido'),
-    email: z.string().email('Por favor, insira um email válido'),
-    cep: z.string().min(8, 'CEP inválido'),
-    address: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres'),
-    city: z.string().min(2, 'Cidade deve ter pelo menos 2 caracteres'),
-    state: z.string().min(2, 'Estado deve ter pelo menos 2 caracteres'),
+    fullName: z
+      .string()
+      .min(2, 'Nome completo deve ter pelo menos 2 caracteres')
+      .max(50)
+      .default(''),
+    cpf: z
+      .string()
+      .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'CPF inválido')
+      .default(''),
+    phone: z
+      .string()
+      .regex(/^\(\d{2}\) \d{5}-\d{4}$/, 'Número de telefone inválido')
+      .default(''),
+    email: z.string().email('Por favor, insira um email válido').default(''),
+    cep: z
+      .string()
+      .regex(/^\d{2}\.\d{3}-\d{3}$/, 'CEP inválido')
+      .default(''),
+    address: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres').default(''),
+    city: z.string().min(2, 'Cidade deve ter pelo menos 2 caracteres').default(''),
+    state: z.string().min(2, 'Estado deve ter pelo menos 2 caracteres').default(''),
   }),
 )
 
-const form = useForm({
+const { handleSubmit } = useForm({
   validationSchema: formSchema,
+  initialValues: {
+    fullName: '',
+    cpf: '',
+    phone: '',
+    email: '',
+    cep: '',
+    address: '',
+    city: '',
+    state: '',
+  },
 })
 
-const onSubmit = form.handleSubmit((values) => {
-  console.log('Form submitted!', values)
+const onSubmit = handleSubmit((values) => {
+  // Remove masks from form values
+  const cleanedValues = {
+    ...values,
+    cpf: values.cpf.replace(/\D/g, ''),
+    phone: values.phone.replace(/\D/g, ''),
+    cep: values.cep.replace(/\D/g, ''),
+  }
+
+  console.log('Form submitted!', cleanedValues)
 })
 </script>
 
@@ -65,6 +96,7 @@ const onSubmit = form.handleSubmit((values) => {
                     type="text"
                     class="w-full rounded-md border px-3 py-2"
                     placeholder="CPF"
+                    v-maska="'###.###.###-##'"
                     v-bind="componentField"
                   />
                 </FormControl>
@@ -79,6 +111,10 @@ const onSubmit = form.handleSubmit((values) => {
                     type="text"
                     class="w-full rounded-md border px-3 py-2"
                     placeholder="Celular"
+                    v-maska="{
+                      mask: (value) => (value.length > 14 ? '(##) #####-####' : '(##) ####-####'),
+                      eager: true,
+                    }"
                     v-bind="componentField"
                   />
                 </FormControl>
@@ -109,6 +145,8 @@ const onSubmit = form.handleSubmit((values) => {
                     type="text"
                     class="w-full rounded-md border px-3 py-2"
                     placeholder="CEP"
+                    v-maska="'##.###-###'"
+                    inputmode="numeric"
                     v-bind="componentField"
                   />
                 </FormControl>
@@ -240,4 +278,3 @@ const onSubmit = form.handleSubmit((values) => {
     </div>
   </div>
 </template>
-template
