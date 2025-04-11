@@ -47,5 +47,6 @@ export const useCartStore = defineStore(STORE_NAME, {
     cartItemsCount: (state) => state.items.length || 0,
     totalPrice: (state) => state.items.reduce((acc, item) => acc + Number(item.price), 0),
     getCartItems: (state) => state.items.filter((item) => item !== null),
+    isCartEmpty: (state) => state.items.length === 0,
   },
 })

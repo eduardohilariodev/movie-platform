@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useCartStore } from '@/stores/cart'
+import { storeToRefs } from 'pinia'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +17,15 @@ const router = createRouter({
       component: () => import('../views/CheckoutView.vue'),
     },
   ],
+})
+
+router.beforeEach((to) => {
+  const cartStore = useCartStore()
+  const { isCartEmpty } = storeToRefs(cartStore)
+
+  if (to.path === '/checkout' && isCartEmpty.value) {
+    return { name: 'home' }
+  }
 })
 
 export default router
