@@ -9,13 +9,13 @@ const { favoritesCount } = storeToRefs(favoriteStore)
 
 <template>
   <div
-    class="relative flex items-center gap-2 hover:cursor-pointer"
+    class="relative flex items-center gap-1 hover:cursor-pointer"
     @click="favoriteStore.toggleDrawer()"
   >
+    <Heart class="text-neutral-100" />
     <span
-      class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white"
+      class="flex h-4 w-4 items-center justify-center rounded-full text-sm font-bold text-white"
       >{{ favoritesCount }}</span
     >
-    <Heart class="text-gray-500" />
   </div>
 </template>

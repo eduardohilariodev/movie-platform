@@ -18,7 +18,7 @@ onMounted(() => {
   <Toaster />
   <AppHeader />
 
-  <main class="relative h-full">
+  <main class="relative h-full bg-gradient-to-br from-black to-teal-900">
     <FavoritesDrawer />
     <CartDrawer />
     <RouterView />

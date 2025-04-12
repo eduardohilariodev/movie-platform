@@ -19,7 +19,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="size-screen grid grid-cols-4 gap-4 overflow-clip">
+  <div
+    class="size-screen mx-auto grid max-w-screen-md grid-cols-2 gap-6 overflow-clip px-10 py-40 md:grid-cols-3 md:px-8 lg:max-w-screen-lg lg:grid-cols-4"
+  >
     <template v-if="isRecommendationsLoading">
       <MovieSkeleton v-for="i in 8" :key="i" />
     </template>

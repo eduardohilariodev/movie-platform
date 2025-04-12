@@ -6,12 +6,13 @@ import FavoritesButton from '../FavoritesButton.vue'
 </script>
 
 <template>
-  <header class="flex items-center justify-between bg-neutral-100 p-4">
+  <header
+    class="fixed top-8 right-0 left-0 z-50 mx-auto my-0 flex max-w-[calc(100%-4rem)] items-center justify-between rounded-full border-2 border-neutral-200/12 bg-neutral-100/12 px-8 py-4 shadow-sm backdrop-blur-md sm:max-w-screen-sm lg:max-w-screen-md"
+  >
     <nav>
       <RouterLink to="/">
-        <h1 class="text-2xl font-bold">Movie Store</h1>
+        <h1 class="text-2xl tracking-widest text-neutral-100">SONATA</h1>
       </RouterLink>
-      <RouterLink to="/about">About</RouterLink>
     </nav>
     <SearchInput />
     <div class="flex items-center gap-4">

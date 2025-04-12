@@ -1,40 +1,40 @@
 export const TMDB_GENRE_MAP = {
-  // Movie genres
-  28: 'Action',
-  12: 'Adventure',
-  16: 'Animation',
-  35: 'Comedy',
+  // Gêneros de Filmes
+  28: 'Ação',
+  12: 'Aventura',
+  16: 'Animação',
+  35: 'Comédia',
   80: 'Crime',
-  99: 'Documentary',
+  99: 'Documentário',
   18: 'Drama',
-  10_751: 'Family',
-  14: 'Fantasy',
-  36: 'History',
-  27: 'Horror',
-  10_402: 'Music',
-  9_648: 'Mystery',
+  10_751: 'Família',
+  14: 'Fantasia',
+  36: 'História',
+  27: 'Terror',
+  10_402: 'Música',
+  9_648: 'Mistério',
   10_749: 'Romance',
-  878: 'Science Fiction',
-  10_770: 'TV Movie',
-  53: 'Thriller',
-  10_752: 'War',
-  37: 'Western',
+  878: 'Ficção Científica',
+  10_770: 'Filme de TV',
+  53: 'Suspense',
+  10_752: 'Guerra',
+  37: 'Faroeste',
 
-  // TV Show genres
-  10_759: 'Action & Adventure',
-  // Animation (16) already defined above
-  // Comedy (35) already defined above
-  // Crime (80) already defined above
-  // Documentary (99) already defined above
-  // Drama (18) already defined above
-  // Family (10751) already defined above
-  10_762: 'Kids',
-  // Mystery (9648) already defined above
-  10_763: 'News',
+  // Gêneros de Séries de TV
+  10_759: 'Ação & Aventura',
+  // Animação (16) já definido acima
+  // Comédia (35) já definido acima
+  // Crime (80) já definido acima
+  // Documentário (99) já definido acima
+  // Drama (18) já definido acima
+  // Família (10751) já definido acima
+  10_762: 'Infantil',
+  // Mistério (9648) já definido acima
+  10_763: 'Notícias',
   10_764: 'Reality',
-  10_765: 'Sci-Fi & Fantasy',
-  10_766: 'Soap',
-  10_767: 'Talk',
-  10_768: 'War & Politics',
-  // Western (37) already defined above
+  10_765: 'Ficção & Fantasia',
+  10_766: 'Novela',
+  10_767: 'Talk Show',
+  10_768: 'Guerra & Política',
+  // Faroeste (37) já definido acima
 }

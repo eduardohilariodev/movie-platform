@@ -12,11 +12,11 @@ const { cartItemsCount: itemsCount } = storeToRefs(cartStore)
 </script>
 
 <template>
-  <div class="relative flex items-center gap-2 hover:cursor-pointer" @click="addToCart">
+  <div class="relative flex items-center gap-1 hover:cursor-pointer" @click="addToCart">
+    <ShoppingCart class="text-neutral-100" />
     <span
-      class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white"
+      class="flex h-4 w-4 items-center justify-center rounded-full text-sm font-bold text-white"
       >{{ itemsCount }}</span
     >
-    <ShoppingCart class="text-gray-500" />
   </div>
 </template>
