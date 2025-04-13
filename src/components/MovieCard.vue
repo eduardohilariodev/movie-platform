@@ -52,6 +52,9 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
       <div class="flex w-full gap-2">
         <Button
           class="w-full rounded-full bg-white text-black hover:bg-neutral-100"
+          :class="
+            isInCart && 'border border-neutral-100 bg-transparent text-white hover:bg-neutral-900'
+          "
           @click="isInCart ? cartStore.removeItem(movie) : cartStore.addItem(movie)"
         >
           {{ isInCart ? 'Remover' : 'Adicionar' }}
