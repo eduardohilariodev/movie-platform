@@ -15,7 +15,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col bg-gradient-to-br from-black to-teal-900">
+  <div class="flex min-h-screen flex-col pt-24">
+    <div class="magicpattern fixed inset-0 z-[-1]"></div>
     <Toaster />
     <AppHeader />
 

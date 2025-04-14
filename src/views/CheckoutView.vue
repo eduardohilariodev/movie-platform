@@ -17,10 +17,10 @@ import * as z from 'zod'
 import { vMaska } from 'maska/vue'
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { ScButton } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
 import MovieListItem from '@/components/features/movie/MovieListItem.vue'
 import TrashButton from '@/components/composed/TrashButton.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 const cartStore = useCartStore()
 const { items, isSuccessDialogOpen } = storeToRefs(cartStore)
@@ -86,19 +86,19 @@ const onSubmit = handleSubmit((values) => {
     <h1 class="mb-6 text-2xl font-bold text-white">Finalizar Compra</h1>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <div class="rounded-lg bg-white p-6 shadow">
+      <div class="rounded-lg border border-gray-800 bg-black/30 p-6 shadow backdrop-blur-md">
         <form @submit.prevent="onSubmit" class="space-y-6">
           <FormField v-slot="{ componentField }" name="fullName">
             <FormItem>
               <FormControl>
                 <input
                   type="text"
-                  class="w-full rounded-md border px-3 py-2"
+                  class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                   placeholder="Nome Completo"
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage class="text-red-400" />
             </FormItem>
           </FormField>
 
@@ -108,13 +108,13 @@ const onSubmit = handleSubmit((values) => {
                 <FormControl>
                   <input
                     type="text"
-                    class="w-full rounded-md border px-3 py-2"
+                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                     placeholder="CPF"
                     v-maska="'###.###.###-##'"
                     v-bind="componentField"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage class="text-red-400" />
               </FormItem>
             </FormField>
 
@@ -123,7 +123,7 @@ const onSubmit = handleSubmit((values) => {
                 <FormControl>
                   <input
                     type="text"
-                    class="w-full rounded-md border px-3 py-2"
+                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                     placeholder="Celular"
                     v-maska="{
                       mask: (value) => (value.length > 14 ? '(##) #####-####' : '(##) ####-####'),
@@ -132,7 +132,7 @@ const onSubmit = handleSubmit((values) => {
                     v-bind="componentField"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage class="text-red-400" />
               </FormItem>
             </FormField>
           </div>
@@ -142,12 +142,12 @@ const onSubmit = handleSubmit((values) => {
               <FormControl>
                 <input
                   type="email"
-                  class="w-full rounded-md border px-3 py-2"
+                  class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                   placeholder="E-mail"
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage class="text-red-400" />
             </FormItem>
           </FormField>
 
@@ -157,14 +157,14 @@ const onSubmit = handleSubmit((values) => {
                 <FormControl>
                   <input
                     type="text"
-                    class="w-full rounded-md border px-3 py-2"
+                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                     placeholder="CEP"
                     v-maska="'##.###-###'"
                     inputmode="numeric"
                     v-bind="componentField"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage class="text-red-400" />
               </FormItem>
             </FormField>
 
@@ -173,12 +173,12 @@ const onSubmit = handleSubmit((values) => {
                 <FormControl>
                   <input
                     type="text"
-                    class="w-full rounded-md border px-3 py-2"
+                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                     placeholder="Endereço"
                     v-bind="componentField"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage class="text-red-400" />
               </FormItem>
             </FormField>
           </div>
@@ -189,12 +189,12 @@ const onSubmit = handleSubmit((values) => {
                 <FormControl>
                   <input
                     type="text"
-                    class="w-full rounded-md border px-3 py-2"
+                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                     placeholder="Cidade"
                     v-bind="componentField"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage class="text-red-400" />
               </FormItem>
             </FormField>
 
@@ -203,66 +203,76 @@ const onSubmit = handleSubmit((values) => {
                 <FormControl>
                   <input
                     type="text"
-                    class="w-full rounded-md border px-3 py-2"
+                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
                     placeholder="Estado"
                     v-bind="componentField"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage class="text-red-400" />
               </FormItem>
             </FormField>
           </div>
         </form>
       </div>
 
-      <div class="rounded-lg bg-white p-6 shadow">
-        <div v-if="items.length > 0">
-          <div class="mb-4 grid grid-cols-4 gap-2 font-semibold">
+      <div
+        class="flex h-[600px] flex-col rounded-lg border border-gray-800 bg-black/30 p-6 shadow backdrop-blur-md"
+      >
+        <div v-if="items.length > 0" class="flex h-full flex-col">
+          <div class="mb-4 grid grid-cols-4 gap-2 font-semibold text-gray-200">
             <div>Imagem</div>
             <div>Nome</div>
             <div>Qtd</div>
             <div>Preço</div>
           </div>
 
-          <div v-for="item in items" :key="item.id" class="mb-4 border-b pb-4">
-            <MovieListItem :movie="item">
-              <template #actions>
-                <div class="flex items-center justify-between">
-                  <span>1</span>
-                  <TrashButton
-                    :onClick="() => cartStore.removeItem(item)"
-                    tooltipText="Remover do carrinho"
-                    class="ml-4"
-                  />
-                </div>
-              </template>
-            </MovieListItem>
-          </div>
-
-          <div class="mt-6 flex items-center justify-between">
-            <div class="text-lg font-bold">Total:</div>
-            <div class="text-xl font-bold">
-              {{ formatCurrency(Number(cartStore.totalPrice)) }}
+          <div class="mb-4 flex-grow overflow-y-auto">
+            <div v-for="item in items" :key="item.id" class="mb-4 border-b border-gray-700 pb-4">
+              <MovieListItem :movie="item">
+                <template #actions>
+                  <div class="flex items-center justify-between text-white">
+                    <span>1</span>
+                    <TrashButton
+                      :onClick="() => cartStore.removeItem(item)"
+                      tooltipText="Remover do carrinho"
+                      class="ml-4"
+                    />
+                  </div>
+                </template>
+              </MovieListItem>
             </div>
           </div>
 
-          <ScButton type="submit" class="mt-6 w-full" @click="onSubmit">
-            Finalizar compra
-          </ScButton>
+          <div class="mt-auto">
+            <div class="flex items-center justify-between text-white">
+              <div class="text-lg font-bold">Total:</div>
+              <div class="text-xl font-bold">
+                {{ formatCurrency(Number(cartStore.totalPrice)) }}
+              </div>
+            </div>
+
+            <BaseButton type="submit" class="mt-6 w-full" @click="onSubmit">
+              Finalizar compra
+            </BaseButton>
+          </div>
         </div>
-        <div v-else class="py-8 text-center text-gray-500">Seu carrinho está vazio</div>
+        <div v-else class="py-8 text-center text-gray-400">Seu carrinho está vazio</div>
       </div>
     </div>
   </div>
 
   <AlertDialog :open="isSuccessDialogOpen">
-    <AlertDialogContent>
+    <AlertDialogContent class="border border-gray-700 bg-gray-900 text-white">
       <AlertDialogHeader>
         <AlertDialogTitle>Obrigado, {{ values.fullName }}!</AlertDialogTitle>
-        <AlertDialogDescription> Sua compra foi finalizada com sucesso! </AlertDialogDescription>
+        <AlertDialogDescription class="text-gray-300">
+          Sua compra foi finalizada com sucesso!
+        </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogAction @click="cartStore.finishCheckout">Ir para a loja</AlertDialogAction>
+        <AlertDialogAction @click="cartStore.finishCheckout" class="bg-primary hover:bg-primary/90"
+          >Ir para a loja</AlertDialogAction
+        >
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
