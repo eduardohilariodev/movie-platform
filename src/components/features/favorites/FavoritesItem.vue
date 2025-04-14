@@ -16,17 +16,10 @@ const favoriteStore = useFavoriteStore()
   <MovieListItem :movie="props.movie">
     <template #actions>
       <CartButton :movie="props.movie" />
-
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>
-            <TrashButton :onClick="() => favoriteStore.removeFavorite(props.movie)" />
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Remover dos favoritos</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <TrashButton
+        :onClick="() => favoriteStore.removeFavorite(props.movie)"
+        tooltipText="Remover dos favoritos"
+      />
     </template>
   </MovieListItem>
 </template>
