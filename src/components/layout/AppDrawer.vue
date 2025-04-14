@@ -58,7 +58,7 @@ const drawerVariants = {
   <AnimatePresence>
     <motion.div
       v-if="isOpen"
-      class="fixed top-30 right-0 bottom-0 z-50 m-4 flex min-w-96 flex-col rounded-md border-2 border-neutral-200/12 bg-neutral-950/95 p-4"
+      class="fixed top-30 right-0 bottom-24 z-50 m-4 flex min-w-96 flex-col rounded-md border-2 border-neutral-200/12 bg-neutral-950/95 p-4"
       :variants="drawerVariants"
       :initial="'hidden'"
       :animate="'visible'"

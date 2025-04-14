@@ -28,7 +28,7 @@ export const useMovieStore = defineStore('movie', () => {
   const isQueryLoading = ref(false)
   const movies = ref<Movie[]>([])
   const filteredMovies = ref<Movie[]>([])
-
+  const currentPage = ref(1)
   function addMovie(movie: Movie) {
     movies.value.push(movie)
   }
@@ -50,30 +50,40 @@ export const useMovieStore = defineStore('movie', () => {
     }
   }
 
-  async function fetchMovies() {
+  async function fetchMovies(page: number = 1) {
     try {
       isRecommendationsLoading.value = true
       const authStore = useAuthStore()
 
-      const response = await fetch(`https://api.themoviedb.org/3/movie/popular`, {
-        headers: authStore.getAuthHeader,
-      })
+      currentPage.value = page
+
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?page=${currentPage.value}`,
+        {
+          headers: authStore.getAuthHeader,
+        },
+      )
       const data = await response.json()
-      movies.value = data.results.map((movie: MovieResponse) => mapMovie(movie))
+      const mappedMovies = data.results.map((movie: MovieResponse) => mapMovie(movie))
+
+      movies.value = page > 1 ? [...movies.value, ...mappedMovies] : mappedMovies
+      return data
     } catch (error) {
       console.error(error)
+      throw error
     } finally {
       isRecommendationsLoading.value = false
     }
   }
 
   return {
-    isRecommendationsLoading,
-    isQueryLoading,
-    movies,
-    filteredMovies,
     addMovie,
-    queryMovies,
     fetchMovies,
+    filteredMovies,
+    isQueryLoading,
+    isRecommendationsLoading,
+    movies,
+    currentPage,
+    queryMovies,
   }
 })

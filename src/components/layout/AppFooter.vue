@@ -12,7 +12,9 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="mt-auto border-t border-neutral-800 bg-neutral-950 py-6">
+  <footer
+    class="fixed right-0 bottom-0 left-0 mt-auto border-t border-neutral-800 bg-neutral-950 py-6"
+  >
     <div class="container mx-auto px-4">
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
         <div class="flex items-center gap-2">
