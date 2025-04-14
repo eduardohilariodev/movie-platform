@@ -1,26 +1,19 @@
 <script setup lang="ts">
 import type { Movie } from '@/types'
-import { useCartStore } from '@/stores/cart'
 import { computed } from 'vue'
 import { useFavoriteStore } from '@/stores/favorite'
 import { useCurrency } from '@/composables/currency'
 import LikeButton from '@/components/composed/LikeButton.vue'
-import BaseButton from '@/components/base/BaseButton.vue'
-import { ShoppingCart, StarIcon, Trash2 } from 'lucide-vue-next'
+import { StarIcon } from 'lucide-vue-next'
+import CartButton from '@/components/features/cart/CartButton.vue'
 
 const props = defineProps<{
   movie: Movie
 }>()
 
-const cartStore = useCartStore()
 const favoriteStore = useFavoriteStore()
 const { formatCurrency } = useCurrency()
 
-const addMovieToCart = () => {
-  cartStore.addItem(props.movie)
-}
-
-const isInCart = computed(() => cartStore.items.find((i) => i.id === props.movie.id))
 const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id === props.movie.id))
 </script>
 
@@ -59,16 +52,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
       </div>
       <div class="flex w-full justify-end gap-2">
         <LikeButton :movie="movie" :is-active="!!isInFavorites" />
-        <BaseButton
-          rounded
-          size="icon"
-          :variant="isInCart ? 'outline' : 'default'"
-          :tooltipText="isInCart ? 'Remover do carrinho' : 'Adicionar ao carrinho'"
-          @click="isInCart ? cartStore.removeItem(movie) : cartStore.addItem(movie)"
-        >
-          <ShoppingCart v-if="!isInCart" class="text-neutral-950" :size="18" />
-          <Trash2 v-else class="text-white" :size="18" />
-        </BaseButton>
+        <CartButton :movie="movie" />
       </div>
     </div>
   </div>

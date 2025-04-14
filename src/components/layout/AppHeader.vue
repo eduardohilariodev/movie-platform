@@ -2,7 +2,7 @@
 import SearchInput from '@/components/composed/SearchInput.vue'
 import { RouterLink } from 'vue-router'
 import AppbarCartButton from '@/components/features/cart/AppbarCartButton.vue'
-import FavoritesButton from '../features/favorites/FavoritesButton.vue'
+import FavoritesButton from '../features/favorites/AppbarFavoritesButton.vue'
 </script>
 
 <template>

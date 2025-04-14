@@ -20,7 +20,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/f
 import { ScButton } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
 const cartStore = useCartStore()
-const { getCartItems, isSuccessDialogOpen } = storeToRefs(cartStore)
+const { items, isSuccessDialogOpen } = storeToRefs(cartStore)
 
 const { formatCurrency } = useCurrency()
 
@@ -213,7 +213,7 @@ const onSubmit = handleSubmit((values) => {
       </div>
 
       <div class="rounded-lg bg-white p-6 shadow">
-        <div v-if="getCartItems.length > 0">
+        <div v-if="items.length > 0">
           <div class="mb-4 grid grid-cols-4 gap-2 font-semibold">
             <div>Imagem</div>
             <div>Nome</div>
@@ -222,7 +222,7 @@ const onSubmit = handleSubmit((values) => {
           </div>
 
           <div
-            v-for="item in getCartItems"
+            v-for="item in items"
             :key="item.id"
             class="mb-4 grid grid-cols-4 items-center gap-2 border-b pb-4"
           >

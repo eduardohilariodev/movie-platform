@@ -15,20 +15,22 @@ export const useCartStore = defineStore(STORE_NAME, () => {
   function addItem(item: Movie) {
     const drawerStore = useDrawerStore()
     const existingItem = items.value.find((i) => i.id === item.id)
-    if (!existingItem) {
-      items.value.push(item)
-      toast('Filme adicionado ao carrinho', {
-        description: `${item.title} foi adicionado ao carrinho`,
-        action: {
-          label: 'Ver Carrinho',
-          onClick: () => {
-            isSuccessDialogOpen.value = false
-            drawerStore.open('cart')
-          },
-        },
-      })
-      drawerStore.open('cart')
+    if (existingItem) {
+      return
     }
+    items.value = [...items.value, item]
+    console.debug('🚀 ~ addItem ~ items:', items.value)
+
+    toast('Filme adicionado ao carrinho', {
+      description: `${item.title} foi adicionado ao carrinho`,
+      action: {
+        label: 'Ver Carrinho',
+        onClick: () => {
+          isSuccessDialogOpen.value = false
+          drawerStore.open('cart')
+        },
+      },
+    })
   }
 
   function removeItem(item: Movie) {

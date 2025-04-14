@@ -19,9 +19,9 @@ const { formatCurrency } = useCurrency()
       class="h-20 w-16 rounded-md object-cover"
     />
     <div class="flex flex-1 flex-col gap-1">
-      <h3 class="text-md font-bold text-neutral-100">{{ props.movie.title }}</h3>
+      <h3 class="text-md font-bold text-white">{{ props.movie.title }}</h3>
 
-      <span class="text-sm font-medium text-neutral-100">{{
+      <span class="text-sm font-medium text-neutral-200">{{
         formatCurrency(Number(props.movie.price))
       }}</span>
     </div>

@@ -1,35 +1,51 @@
 <script setup lang="ts">
 import { ShoppingCart } from 'lucide-vue-next'
-import { ScButton } from '@/components/ui/button'
 import { useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
-import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
+import { computed } from 'vue'
+import BaseButton from '@/components/base/BaseButton.vue'
+import type { Movie } from '@/types'
+
+const props = defineProps<{
+  movie?: Movie
+}>()
 
 const cartStore = useCartStore()
-const { cartItemsCount } = storeToRefs(cartStore)
+const { cartItemsCount, items } = storeToRefs(cartStore)
 
-function openCart() {
-  cartStore.toggleDrawer()
+function handleClick() {
+  if (!props.movie) {
+    // Handle cart drawer toggle if needed
+    return
+  }
+
+  if (isInCart.value) {
+    cartStore.removeItem(props.movie)
+  } else {
+    cartStore.addItem(props.movie)
+  }
 }
+const isCartEmpty = computed(() => items.value.length === 0)
+const isInCart = computed(() =>
+  props.movie ? items.value.some((item) => item.id === props.movie?.id) : false,
+)
 </script>
 
 <template>
-  <TooltipProvider>
-    <Tooltip>
-      <TooltipTrigger>
-        <ScButton variant="outline" class="relative rounded-full" @click="openCart">
-          <ShoppingCart class="h-4 w-4" />
-          <span
-            v-if="cartItemsCount > 0"
-            class="bg-primary text-primary-foreground absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px]"
-          >
-            {{ cartItemsCount }}
-          </span>
-        </ScButton>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Carrinho</p>
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
+  <BaseButton
+    rounded
+    size="icon"
+    variant="outline"
+    :tooltipText="props.movie && !isInCart ? 'Adicionar ao Carrinho' : 'Ver Carrinho'"
+    @click="handleClick"
+    class="relative"
+  >
+    <ShoppingCart :fill="isCartEmpty ? 'none' : 'currentColor'" class="h-4 w-4" />
+    <span
+      v-if="cartItemsCount > 0"
+      class="bg-primary text-primary-foreground absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px]"
+    >
+      {{ cartItemsCount }}
+    </span>
+  </BaseButton>
 </template>

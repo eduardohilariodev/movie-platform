@@ -6,23 +6,28 @@ import AppDrawer from '@/components/layout/AppDrawer.vue'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useCurrency } from '@/composables/currency'
+import { useDrawerStore } from '@/stores/drawer'
+import { computed } from 'vue'
 
 const cartStore = useCartStore()
-const { cartItemsCount, totalPrice, getCartItems } = storeToRefs(cartStore)
+const drawerStore = useDrawerStore()
+const { cartItemsCount, totalPrice, items } = storeToRefs(cartStore)
 const router = useRouter()
+
+const isOpen = computed(() => drawerStore.isOpen && drawerStore.drawerType === 'cart')
 
 function navigateToCheckout() {
   router.push('/checkout')
-  cartStore.closeDrawer()
+  drawerStore.close()
 }
 
 const { formatCurrency } = useCurrency()
 </script>
 
 <template>
-  <AppDrawer :is-open="cartStore.isOpen" @close="cartStore.closeDrawer" title="Meu Carrinho">
+  <AppDrawer :is-open="isOpen" @close="drawerStore.close()" title="Meu Carrinho">
     <template #header-actions>
-      <BaseButton variant="outline" @click="cartStore.clearCart" :disabled="!cartItemsCount"
+      <BaseButton variant="outline" @click="cartStore.clearCart()" :disabled="!cartItemsCount"
         >Esvaziar</BaseButton
       >
     </template>
@@ -30,7 +35,7 @@ const { formatCurrency } = useCurrency()
       <span>Carrinho vazio</span>
     </div>
     <div class="flex size-full flex-col gap-4" v-else>
-      <CartItem v-for="movie in getCartItems" :key="movie.id" :movie="movie" />
+      <CartItem v-for="movie in items" :key="movie.id" :movie="movie" />
     </div>
     <template #footer-actions>
       <div class="flex w-full flex-col gap-4">
