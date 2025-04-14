@@ -11,7 +11,7 @@ const { formatCurrency } = useCurrency()
 
 <template>
   <div
-    class="flex items-center gap-4 rounded-lg border border-neutral-100/12 bg-neutral-950/48 p-3 backdrop-blur-md"
+    class="flex items-center gap-4 rounded-lg border border-neutral-100/12 bg-neutral-950/48 p-3 backdrop-blur-md transition-transform duration-200 hover:scale-102"
   >
     <img
       :src="props.movie.posterPath"

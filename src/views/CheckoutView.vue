@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -275,9 +274,7 @@ const onSubmit = handleSubmit((values) => {
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogAction @click="cartStore.finishCheckout" class="bg-primary hover:bg-primary/90"
-          >Ir para a loja</AlertDialogAction
-        >
+        <BaseButton @click="cartStore.finishCheckout">Ir para a loja</BaseButton>
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
