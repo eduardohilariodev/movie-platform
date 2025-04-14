@@ -6,7 +6,7 @@ import { Toaster } from 'vue-sonner'
 import { useAuthStore } from '@/stores/auth'
 import { onMounted } from 'vue'
 import FavoritesDrawer from '@/components/features/favorites/FavoritesDrawer.vue'
-
+import AppFooter from '@/components/layout/AppFooter.vue'
 const authStore = useAuthStore()
 
 onMounted(() => {
@@ -15,12 +15,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <Toaster />
-  <AppHeader />
+  <div class="flex min-h-screen flex-col bg-gradient-to-br from-black to-teal-900">
+    <Toaster />
+    <AppHeader />
 
-  <main class="relative h-full bg-gradient-to-br from-black to-teal-900">
-    <FavoritesDrawer />
-    <CartDrawer />
-    <RouterView />
-  </main>
+    <main class="flex-1">
+      <FavoritesDrawer />
+      <CartDrawer />
+      <RouterView />
+    </main>
+
+    <AppFooter />
+  </div>
 </template>

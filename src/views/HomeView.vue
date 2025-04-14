@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="size-screen mx-auto grid max-w-screen-md grid-flow-dense grid-cols-2 gap-6 overflow-clip px-10 py-40 md:grid-cols-3 md:px-8 lg:max-w-screen-lg"
+    class="mx-auto grid max-w-screen-md grid-flow-dense grid-cols-2 gap-6 px-10 py-24 md:grid-cols-3 md:px-8 lg:max-w-screen-lg"
   >
     <template v-if="isRecommendationsLoading">
       <MovieSkeleton v-for="i in 8" :key="i" />

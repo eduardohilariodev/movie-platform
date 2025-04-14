@@ -19,6 +19,9 @@ import { vMaska } from 'maska/vue'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { ScButton } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
+import MovieListItem from '@/components/features/movie/MovieListItem.vue'
+import TrashButton from '@/components/composed/TrashButton.vue'
+
 const cartStore = useCartStore()
 const { items, isSuccessDialogOpen } = storeToRefs(cartStore)
 
@@ -79,8 +82,8 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="container mx-auto my-8 p-4">
-    <h1 class="mb-6 text-2xl font-bold">Finalizar Compra</h1>
+  <div class="mx-auto max-w-screen-lg px-10 py-24 md:px-8">
+    <h1 class="mb-6 text-2xl font-bold text-white">Finalizar Compra</h1>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
       <div class="rounded-lg bg-white p-6 shadow">
