@@ -19,7 +19,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
 
 <template>
   <div
-    class="flex h-full flex-col rounded-[1.8rem] border-2 border-neutral-100/12 bg-neutral-950/95"
+    class="flex h-full flex-col rounded-[1.8rem] border-2 border-neutral-100/12 bg-neutral-950/95 transition-transform duration-200 hover:scale-102"
     :style="{
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${movie.posterPath})`,
       backgroundSize: 'cover',
@@ -30,7 +30,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
       <img
         :src="movie.posterPath"
         :alt="movie.title"
-        class="mb-2 aspect-[2/3] w-full rounded-lg object-cover"
+        class="mb-2 aspect-[2/3] w-full rounded-lg object-cover transition-transform duration-200 hover:scale-103"
       />
     </div>
     <div

@@ -13,15 +13,13 @@ const currentYear = new Date().getFullYear()
 
 <template>
   <footer
-    class="fixed right-0 bottom-0 left-0 mt-auto border-t border-neutral-800 bg-neutral-950 py-6"
+    class="fixed right-0 bottom-0 left-0 mt-auto border-t border-neutral-800 bg-neutral-950 px-4 py-6"
   >
     <div class="container mx-auto px-4">
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div class="flex items-center gap-2">
-          <BaseButton variant="outline" rounded @click="navigateToHome">
-            <span class="text-xl font-bold">SC</span>
-          </BaseButton>
-          <span class="text-sm text-neutral-400">© {{ currentYear }} SceneShop</span>
+        <div class="flex items-center gap-2 text-neutral-400">
+          <span class="text-xl tracking-widest">SONATA</span>
+          <span class="text-sm">© {{ currentYear }} SONATA: The Movie Platform</span>
         </div>
 
         <div class="flex gap-4">
