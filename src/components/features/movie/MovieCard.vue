@@ -30,7 +30,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
       <img
         :src="movie.posterPath"
         :alt="movie.title"
-        class="aspect-[2/3] w-full rounded-lg object-cover"
+        class="mb-2 aspect-[2/3] w-full rounded-lg object-cover"
       />
     </div>
     <div

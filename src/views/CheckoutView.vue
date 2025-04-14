@@ -88,129 +88,144 @@ const onSubmit = handleSubmit((values) => {
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
       <div class="rounded-lg border border-gray-800 bg-black/30 p-6 shadow backdrop-blur-md">
         <form @submit.prevent="onSubmit" class="space-y-6">
-          <FormField v-slot="{ componentField }" name="fullName">
-            <FormItem>
-              <FormControl>
-                <input
-                  type="text"
-                  class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                  placeholder="Nome Completo"
-                  v-bind="componentField"
-                />
-              </FormControl>
-              <FormMessage class="text-red-400" />
-            </FormItem>
-          </FormField>
+          <!-- Dados Pessoais -->
+          <div>
+            <h2 class="mb-4 text-xl font-semibold text-white">Dados Pessoais</h2>
 
-          <div class="grid grid-cols-2 gap-4">
-            <FormField v-slot="{ componentField }" name="cpf">
-              <FormItem>
-                <FormControl>
-                  <input
-                    type="text"
-                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                    placeholder="CPF"
-                    v-maska="'###.###.###-##'"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage class="text-red-400" />
-              </FormItem>
-            </FormField>
+            <div class="space-y-4">
+              <FormField v-slot="{ componentField }" name="fullName">
+                <FormItem>
+                  <FormControl>
+                    <input
+                      type="text"
+                      class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                      placeholder="Nome Completo"
+                      v-bind="componentField"
+                    />
+                  </FormControl>
+                  <FormMessage class="text-red-400" />
+                </FormItem>
+              </FormField>
 
-            <FormField v-slot="{ componentField }" name="phone">
-              <FormItem>
-                <FormControl>
-                  <input
-                    type="text"
-                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                    placeholder="Celular"
-                    v-maska="{
-                      mask: (value) => (value.length > 14 ? '(##) #####-####' : '(##) ####-####'),
-                      eager: true,
-                    }"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage class="text-red-400" />
-              </FormItem>
-            </FormField>
+              <div class="grid grid-cols-2 gap-4">
+                <FormField v-slot="{ componentField }" name="cpf">
+                  <FormItem>
+                    <FormControl>
+                      <input
+                        type="text"
+                        class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                        placeholder="CPF"
+                        v-maska="'###.###.###-##'"
+                        v-bind="componentField"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-red-400" />
+                  </FormItem>
+                </FormField>
+
+                <FormField v-slot="{ componentField }" name="phone">
+                  <FormItem>
+                    <FormControl>
+                      <input
+                        type="text"
+                        class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                        placeholder="Celular"
+                        v-maska="{
+                          mask: (value) =>
+                            value.length > 14 ? '(##) #####-####' : '(##) ####-####',
+                          eager: true,
+                        }"
+                        v-bind="componentField"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-red-400" />
+                  </FormItem>
+                </FormField>
+              </div>
+
+              <FormField v-slot="{ componentField }" name="email">
+                <FormItem>
+                  <FormControl>
+                    <input
+                      type="email"
+                      class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                      placeholder="E-mail"
+                      v-bind="componentField"
+                    />
+                  </FormControl>
+                  <FormMessage class="text-red-400" />
+                </FormItem>
+              </FormField>
+            </div>
           </div>
 
-          <FormField v-slot="{ componentField }" name="email">
-            <FormItem>
-              <FormControl>
-                <input
-                  type="email"
-                  class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                  placeholder="E-mail"
-                  v-bind="componentField"
-                />
-              </FormControl>
-              <FormMessage class="text-red-400" />
-            </FormItem>
-          </FormField>
+          <!-- Endereço -->
+          <div>
+            <h2 class="mb-4 text-xl font-semibold text-white">Endereço</h2>
 
-          <div class="grid grid-cols-3 gap-4">
-            <FormField v-slot="{ componentField }" name="cep">
-              <FormItem>
-                <FormControl>
-                  <input
-                    type="text"
-                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                    placeholder="CEP"
-                    v-maska="'##.###-###'"
-                    inputmode="numeric"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage class="text-red-400" />
-              </FormItem>
-            </FormField>
+            <div class="space-y-4">
+              <div class="grid grid-cols-3 gap-4">
+                <FormField v-slot="{ componentField }" name="cep">
+                  <FormItem>
+                    <FormControl>
+                      <input
+                        type="text"
+                        class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                        placeholder="CEP"
+                        v-maska="'##.###-###'"
+                        inputmode="numeric"
+                        v-bind="componentField"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-red-400" />
+                  </FormItem>
+                </FormField>
 
-            <FormField v-slot="{ componentField }" name="address" class="col-span-2">
-              <FormItem>
-                <FormControl>
-                  <input
-                    type="text"
-                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                    placeholder="Endereço"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage class="text-red-400" />
-              </FormItem>
-            </FormField>
-          </div>
+                <FormField v-slot="{ componentField }" name="address" class="col-span-2">
+                  <FormItem>
+                    <FormControl>
+                      <input
+                        type="text"
+                        class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                        placeholder="Endereço"
+                        v-bind="componentField"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-red-400" />
+                  </FormItem>
+                </FormField>
+              </div>
 
-          <div class="grid grid-cols-2 gap-4">
-            <FormField v-slot="{ componentField }" name="city">
-              <FormItem>
-                <FormControl>
-                  <input
-                    type="text"
-                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                    placeholder="Cidade"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage class="text-red-400" />
-              </FormItem>
-            </FormField>
+              <div class="grid grid-cols-2 gap-4">
+                <FormField v-slot="{ componentField }" name="city">
+                  <FormItem>
+                    <FormControl>
+                      <input
+                        type="text"
+                        class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                        placeholder="Cidade"
+                        v-bind="componentField"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-red-400" />
+                  </FormItem>
+                </FormField>
 
-            <FormField v-slot="{ componentField }" name="state">
-              <FormItem>
-                <FormControl>
-                  <input
-                    type="text"
-                    class="w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
-                    placeholder="Estado"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage class="text-red-400" />
-              </FormItem>
-            </FormField>
+                <FormField v-slot="{ componentField }" name="state">
+                  <FormItem>
+                    <FormControl>
+                      <input
+                        type="text"
+                        class="h-10 w-full rounded-md border border-gray-700 bg-gray-900/80 px-3 py-2 text-white placeholder:text-gray-400"
+                        placeholder="Estado"
+                        v-bind="componentField"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-red-400" />
+                  </FormItem>
+                </FormField>
+              </div>
+            </div>
           </div>
         </form>
       </div>

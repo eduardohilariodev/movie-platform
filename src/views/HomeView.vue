@@ -16,6 +16,16 @@ onMounted(() => {
     movieStore.fetchMovies()
   }
 })
+
+import { useIntersectionObserver } from '@vueuse/core'
+import { shallowRef, useTemplateRef } from 'vue'
+
+const target = useTemplateRef<HTMLDivElement>('target')
+const targetIsVisible = shallowRef(false)
+
+const { stop } = useIntersectionObserver(target, ([entry], observerElement) => {
+  targetIsVisible.value = entry?.isIntersecting || false
+})
 </script>
 
 <template>
