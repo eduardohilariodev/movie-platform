@@ -33,7 +33,15 @@ const handleClick = () => {
           :variant="variant || 'default'"
           :size="size || 'default'"
           :disabled="disabled"
-          :class="[{ 'rounded-full': rounded }, props.class]"
+          :class="[
+            {
+              'aspect-square size-10 rounded-full': rounded,
+              'w-full rounded-full bg-white text-black hover:bg-neutral-100': variant === 'default',
+              'border border-neutral-100 bg-transparent text-white hover:bg-neutral-200':
+                variant === 'outline',
+            },
+            props.class,
+          ]"
           @click="handleClick"
         >
           <slot />

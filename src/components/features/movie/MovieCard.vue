@@ -5,6 +5,7 @@ import { useCartStore } from '@/stores/cart'
 import { computed } from 'vue'
 import { useFavoriteStore } from '@/stores/favorite'
 import { useCurrency } from '@/composables/currency'
+import LikeButton from '@/components/composed/LikeButton.vue'
 
 const props = defineProps<{
   movie: Movie
