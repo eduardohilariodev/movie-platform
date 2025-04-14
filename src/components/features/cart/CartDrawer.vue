@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cart'
 import CartItem from '@/components/features/cart/CartItem.vue'
-import { ScButton } from '@/components/ui/button'
+import BaseButton from '@/components/base/BaseButton.vue'
 import AppDrawer from '@/components/layout/AppDrawer.vue'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
@@ -38,10 +38,12 @@ const { formatCurrency } = useCurrency()
           <span>Total</span>
           <span>{{ formatCurrency(Number(totalPrice)) }}</span>
         </div>
-        <ScButton :disabled="!cartItemsCount" @click="navigateToCheckout" class="w-full">
-          Ir para o checkout
-        </ScButton>
       </div>
     </div>
+    <template #footer-actions>
+      <BaseButton :disabled="!cartItemsCount" @click="navigateToCheckout" class="w-full">
+        Ir para o checkout
+      </BaseButton>
+    </template>
   </AppDrawer>
 </template>

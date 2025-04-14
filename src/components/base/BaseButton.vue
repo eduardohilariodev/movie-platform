@@ -10,6 +10,7 @@ const props = defineProps<{
   rounded?: boolean
   tooltipText?: string
   onClick?: () => void
+  class?: string
 }>()
 
 const emit = defineEmits<{
@@ -32,7 +33,7 @@ const handleClick = () => {
           :variant="variant || 'default'"
           :size="size || 'default'"
           :disabled="disabled"
-          :class="{ 'rounded-full': rounded }"
+          :class="[{ 'rounded-full': rounded }, props.class]"
           @click="handleClick"
         >
           <slot />
