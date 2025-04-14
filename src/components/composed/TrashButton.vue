@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <BaseButton variant="outline" :rounded="true" :tooltipText="tooltipText" :onClick="props.onClick">
-    <Trash class="h-4 w-4" />
+  <BaseButton variant="outline" rounded :tooltipText="tooltipText" :onClick="props.onClick">
+    <Trash class="h-3 w-3" />
   </BaseButton>
 </template>

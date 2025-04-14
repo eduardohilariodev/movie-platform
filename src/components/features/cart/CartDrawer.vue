@@ -22,28 +22,26 @@ const { formatCurrency } = useCurrency()
 <template>
   <AppDrawer :is-open="cartStore.isOpen" @close="cartStore.closeDrawer" title="Meu Carrinho">
     <template #header-actions>
-      <ScButton variant="outline" @click="cartStore.clearCart" :disabled="!cartItemsCount"
-        >Esvaziar</ScButton
+      <BaseButton variant="outline" @click="cartStore.clearCart" :disabled="!cartItemsCount"
+        >Esvaziar</BaseButton
       >
     </template>
-    <div class="flex h-full w-full flex-col items-center justify-between">
-      <div class="flex h-full flex-col items-start gap-4 overflow-y-scroll">
-        <div class="flex flex-col gap-4" v-if="!cartItemsCount">
-          <span>Carrinho vazio</span>
-        </div>
-        <CartItem v-for="movie in getCartItems" :key="movie.id" :movie="movie" v-else />
-      </div>
+    <div class="flex size-full flex-col justify-center" v-if="!cartItemsCount">
+      <span>Carrinho vazio</span>
+    </div>
+    <div class="flex size-full flex-col gap-4" v-else>
+      <CartItem v-for="movie in getCartItems" :key="movie.id" :movie="movie" />
+    </div>
+    <template #footer-actions>
       <div class="flex w-full flex-col gap-4">
-        <div class="flex w-full items-center justify-between">
+        <div class="flex w-full items-center justify-between text-lg font-bold text-neutral-100">
           <span>Total</span>
           <span>{{ formatCurrency(Number(totalPrice)) }}</span>
         </div>
+        <BaseButton :disabled="!cartItemsCount" @click="navigateToCheckout" class="w-full">
+          Ir para o checkout
+        </BaseButton>
       </div>
-    </div>
-    <template #footer-actions>
-      <BaseButton :disabled="!cartItemsCount" @click="navigateToCheckout" class="w-full">
-        Ir para o checkout
-      </BaseButton>
     </template>
   </AppDrawer>
 </template>
