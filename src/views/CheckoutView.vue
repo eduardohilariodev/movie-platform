@@ -218,35 +218,25 @@ const onSubmit = handleSubmit((values) => {
       <div
         class="flex h-[600px] flex-col rounded-lg border border-gray-800 bg-black/30 p-6 shadow backdrop-blur-md"
       >
-        <div v-if="items.length > 0" class="flex h-full flex-col">
-          <div class="mb-4 grid grid-cols-4 gap-2 font-semibold text-gray-200">
-            <div>Imagem</div>
-            <div>Nome</div>
-            <div>Qtd</div>
-            <div>Preço</div>
-          </div>
-
-          <div class="mb-4 flex-grow overflow-y-auto">
-            <div v-for="item in items" :key="item.id" class="mb-4 border-b border-gray-700 pb-4">
-              <MovieListItem :movie="item">
-                <template #actions>
-                  <div class="flex items-center justify-between text-white">
-                    <span>1</span>
-                    <TrashButton
-                      :onClick="() => cartStore.removeItem(item)"
-                      tooltipText="Remover do carrinho"
-                      class="ml-4"
-                    />
-                  </div>
-                </template>
-              </MovieListItem>
-            </div>
+        <div v-if="items.length > 0" class="flex h-full flex-col gap-4">
+          <div class="mb-4 contents flex-grow gap-4 overflow-y-auto">
+            <MovieListItem v-for="item in items" :key="item.id" :movie="item">
+              <template #actions>
+                <div class="flex items-center justify-between text-white">
+                  <TrashButton
+                    :onClick="() => cartStore.removeItem(item)"
+                    tooltipText="Remover do carrinho"
+                    class="ml-4"
+                  />
+                </div>
+              </template>
+            </MovieListItem>
           </div>
 
           <div class="mt-auto">
-            <div class="flex items-center justify-between text-white">
-              <div class="text-lg font-bold">Total:</div>
-              <div class="text-xl font-bold">
+            <div class="flex items-center justify-between font-bold text-white">
+              <div class="text-lg">Total</div>
+              <div class="text-xl">
                 {{ formatCurrency(Number(cartStore.totalPrice)) }}
               </div>
             </div>

@@ -143,3 +143,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .text-primary-dark {
+    color: #0c201e;
+  }
+
+  ::selection {
+    background-color: #005e54;
+    color: white;
+  }
+
+  input {
+    color: white;
+    caret-color: white;
+  }
+}
