@@ -1,36 +1,36 @@
 import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 
-interface TMDBAuthState {
-  apiKey: string | null
-  accessToken: string | null
-  isAuthenticated: boolean
-}
+export const useAuthStore = defineStore('auth', () => {
+  const apiKey = ref(import.meta.env.VITE_TMDB_API_KEY || null)
+  const accessToken = ref(import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN || null)
+  const isAuthenticated = ref(false)
 
-export const useAuthStore = defineStore('auth', {
-  state: (): TMDBAuthState => ({
-    apiKey: import.meta.env.VITE_TMDB_API_KEY || null,
-    accessToken: import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN || null,
-    isAuthenticated: false,
-  }),
+  const getApiKey = computed(() => apiKey.value)
+  const getAccessToken = computed(() => accessToken.value)
+  const getAuthHeader = computed(() => ({
+    Authorization: `Bearer ${accessToken.value}`,
+  }))
 
-  getters: {
-    getApiKey: (state) => state.apiKey,
-    getAccessToken: (state) => state.accessToken,
-    getAuthHeader: (state) => ({
-      Authorization: `Bearer ${state.accessToken}`,
-    }),
-  },
+  function initialize() {
+    // Check if tokens are available
+    if (apiKey.value && accessToken.value) {
+      isAuthenticated.value = true
+    }
+  }
 
-  actions: {
-    initialize() {
-      // Check if tokens are available
-      if (this.apiKey && this.accessToken) {
-        this.isAuthenticated = true
-      }
-    },
+  function reset() {
+    isAuthenticated.value = false
+  }
 
-    reset() {
-      this.isAuthenticated = false
-    },
-  },
+  return {
+    apiKey,
+    accessToken,
+    isAuthenticated,
+    getApiKey,
+    getAccessToken,
+    getAuthHeader,
+    initialize,
+    reset,
+  }
 })

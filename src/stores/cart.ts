@@ -3,59 +3,74 @@ import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { toast } from 'vue-sonner'
 import router from '@/router'
+import { useDrawerStore } from '@/stores/drawer'
+import { computed, ref } from 'vue'
+
 const STORE_NAME = 'cart'
 
-export const useCartStore = defineStore(STORE_NAME, {
-  state: () => ({
-    items: useStorage<Movie[]>(STORE_NAME, []),
-    isOpen: false,
-    isSuccessDialogOpen: false,
-  }),
-  actions: {
-    addItem(item: Movie) {
-      const existingItem = this.items.find((i) => i.id === item.id)
-      if (!existingItem) {
-        this.items.push(item)
-        toast('Filme adicionado ao carrinho', {
-          description: `${item.title} foi adicionado ao carrinho`,
-          action: {
-            label: 'Ver Carrinho',
-            onClick: () => (this.isOpen = true),
+export const useCartStore = defineStore(STORE_NAME, () => {
+  const items = useStorage<Movie[]>(STORE_NAME, [])
+  const isSuccessDialogOpen = ref(false)
+
+  function addItem(item: Movie) {
+    const drawerStore = useDrawerStore()
+    const existingItem = items.value.find((i) => i.id === item.id)
+    if (!existingItem) {
+      items.value.push(item)
+      toast('Filme adicionado ao carrinho', {
+        description: `${item.title} foi adicionado ao carrinho`,
+        action: {
+          label: 'Ver Carrinho',
+          onClick: () => {
+            isSuccessDialogOpen.value = false
+            drawerStore.open('cart')
           },
-        })
-      }
-    },
-    closeDrawer() {
-      this.isOpen = false
-    },
-    toggleDrawer() {
-      this.isOpen = !this.isOpen
-    },
-    removeItem(item: Movie) {
-      this.items = this.items.filter((i) => i.id !== item.id)
-      toast('Filme removido do carrinho', {
-        description: `${item.title} foi removido do carrinho`,
+        },
       })
-    },
-    clearCart() {
-      this.items = []
-      toast('Carrinho esvaziado', {
-        description: 'Todos os filmes foram removidos do carrinho',
-      })
-    },
-    startCheckout() {
-      this.isSuccessDialogOpen = true
-    },
-    finishCheckout() {
-      this.items = []
-      this.isSuccessDialogOpen = false
-      router.push('/')
-    },
-  },
-  getters: {
-    cartItemsCount: (state) => state.items.length || 0,
-    totalPrice: (state) => state.items.reduce((acc, item) => acc + Number(item.price), 0),
-    getCartItems: (state) => state.items.filter((item) => item !== null),
-    isCartEmpty: (state) => state.items.length === 0,
-  },
+      drawerStore.open('cart')
+    }
+  }
+
+  function removeItem(item: Movie) {
+    items.value = items.value.filter((i) => i.id !== item.id)
+    toast('Filme removido do carrinho', {
+      description: `${item.title} foi removido do carrinho`,
+    })
+  }
+
+  function clearCart() {
+    items.value = []
+    toast('Carrinho esvaziado', {
+      description: 'Todos os filmes foram removidos do carrinho',
+    })
+  }
+
+  function startCheckout() {
+    isSuccessDialogOpen.value = true
+  }
+
+  function finishCheckout() {
+    items.value = []
+    isSuccessDialogOpen.value = false
+    router.push('/')
+  }
+
+  const cartItemsCount = computed(() => items.value.length || 0)
+  const totalPrice = computed(() => items.value.reduce((acc, item) => acc + Number(item.price), 0))
+  const getCartItems = computed(() => items.value.filter((item) => item !== null))
+  const isCartEmpty = computed(() => items.value.length === 0)
+
+  return {
+    items,
+    isSuccessDialogOpen,
+    addItem,
+    removeItem,
+    clearCart,
+    startCheckout,
+    finishCheckout,
+    cartItemsCount,
+    totalPrice,
+    getCartItems,
+    isCartEmpty,
+  }
 })
