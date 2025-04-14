@@ -19,12 +19,11 @@ function handleClick() {
     return
   }
 
-  if (isInCart.value) {
-    cartStore.removeItem(props.movie)
-  } else {
-    cartStore.addItem(props.movie)
-  }
+  // Directly attempt to add the item.
+  // The store's addItem action will handle checks for duplicates.
+  cartStore.addItem(props.movie)
 }
+
 const isCartEmpty = computed(() => items.value.length === 0)
 const isInCart = computed(() =>
   props.movie ? items.value.some((item) => item.id === props.movie?.id) : false,
@@ -36,11 +35,18 @@ const isInCart = computed(() =>
     rounded
     size="icon"
     variant="outline"
-    :tooltipText="props.movie && !isInCart ? 'Adicionar ao Carrinho' : 'Ver Carrinho'"
+    :tooltipText="
+      props.movie && !isInCart
+        ? 'Adicionar ao Carrinho'
+        : props.movie
+          ? 'Item no Carrinho'
+          : 'Ver Carrinho'
+    "
     @click="handleClick"
     class="relative"
+    :disabled="!!props.movie && isInCart"
   >
-    <ShoppingCart :fill="isCartEmpty ? 'none' : 'currentColor'" class="h-4 w-4" />
+    <ShoppingCart :fill="isInCart ? 'currentColor' : 'none'" class="h-4 w-4" />
     <span
       v-if="cartItemsCount > 0"
       class="bg-primary text-primary-foreground absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px]"
