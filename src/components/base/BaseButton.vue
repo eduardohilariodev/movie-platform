@@ -36,8 +36,9 @@ const handleClick = () => {
           :class="[
             {
               'aspect-square size-10 rounded-full': rounded,
-              'w-full rounded-full bg-white text-black hover:bg-neutral-100': variant === 'default',
-              'border border-neutral-100 bg-transparent text-white hover:bg-neutral-200':
+              'rounded-full bg-white text-black hover:bg-neutral-100 dark:bg-neutral-100 dark:text-neutral-950 dark:hover:bg-neutral-200':
+                variant === 'default',
+              'border border-neutral-100/30 bg-transparent text-white hover:bg-neutral-800/50 dark:border-neutral-100/30 dark:hover:bg-neutral-800/50':
                 variant === 'outline',
             },
             props.class,

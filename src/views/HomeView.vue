@@ -20,13 +20,13 @@ onMounted(() => {
 
 <template>
   <div
-    class="size-screen mx-auto grid max-w-screen-md grid-cols-2 gap-6 overflow-clip px-10 py-40 md:grid-cols-3 md:px-8 lg:max-w-screen-lg lg:grid-cols-4"
+    class="size-screen mx-auto grid max-w-screen-md grid-flow-dense grid-cols-2 gap-6 overflow-clip px-10 py-40 md:grid-cols-3 md:px-8 lg:max-w-screen-lg"
   >
     <template v-if="isRecommendationsLoading">
       <MovieSkeleton v-for="i in 8" :key="i" />
     </template>
     <template v-else>
-      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
+      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" class="h-full" />
     </template>
   </div>
 </template>
