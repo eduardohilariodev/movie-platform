@@ -34,6 +34,8 @@ export const useCartStore = defineStore(STORE_NAME, () => {
   }
 
   function removeItem(item: Movie) {
+    console.debug('🚀 ~ removeItem ~ item:', item)
+
     items.value = items.value.filter((i) => i.id !== item.id)
     toast('Filme removido do carrinho', {
       description: `${item.title} foi removido do carrinho`,

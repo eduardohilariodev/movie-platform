@@ -221,58 +221,19 @@ const onSubmit = handleSubmit((values) => {
             <div>Preço</div>
           </div>
 
-          <div
-            v-for="item in items"
-            :key="item.id"
-            class="mb-4 grid grid-cols-4 items-center gap-2 border-b pb-4"
-          >
-            <div class="flex h-16 w-16 items-center justify-center bg-gray-100">
-              <img
-                v-if="item.posterPath"
-                :src="item.posterPath"
-                alt="Poster"
-                class="h-full w-full object-cover"
-              />
-              <svg
-                v-else
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="text-gray-400"
-              >
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                <circle cx="9" cy="9" r="2" />
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-              </svg>
-            </div>
-            <div>{{ item.title }}</div>
-            <div>1</div>
-            <div class="flex items-center justify-between">
-              <span>{{ formatCurrency(item.price) }}</span>
-              <button @click="cartStore.removeItem(item)" class="text-gray-500 hover:text-gray-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M3 6h18" />
-                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                </svg>
-              </button>
-            </div>
+          <div v-for="item in items" :key="item.id" class="mb-4 border-b pb-4">
+            <MovieListItem :movie="item">
+              <template #actions>
+                <div class="flex items-center justify-between">
+                  <span>1</span>
+                  <TrashButton
+                    :onClick="() => cartStore.removeItem(item)"
+                    tooltipText="Remover do carrinho"
+                    class="ml-4"
+                  />
+                </div>
+              </template>
+            </MovieListItem>
           </div>
 
           <div class="mt-6 flex items-center justify-between">

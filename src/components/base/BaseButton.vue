@@ -13,15 +13,10 @@ const props = defineProps<{
   class?: string
 }>()
 
-const emit = defineEmits<{
-  (e: 'click'): void
-}>()
-
 const handleClick = () => {
   if (props.onClick) {
     props.onClick()
   }
-  emit('click')
 }
 </script>
 

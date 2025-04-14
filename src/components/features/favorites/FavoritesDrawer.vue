@@ -14,14 +14,12 @@ const isOpen = computed(() => drawerStore.isOpen && drawerStore.drawerType === '
 </script>
 
 <template>
-  <AppDrawer :is-open="isOpen" @close="drawerStore.close" title="Favoritos">
-    <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-4">
-        <div v-if="!favoritesCount">
-          <span>Nenhum filme favoritado</span>
-        </div>
-        <FavoritesItem v-else v-for="movie in getFavoritesItems" :key="movie.id" :movie="movie" />
+  <AppDrawer :is-open="isOpen" @close="drawerStore.close" title="Meus Favoritos">
+    <div class="flex size-full flex-col gap-4">
+      <div class="flex size-full flex-col gap-4" v-if="!favoritesCount">
+        <span>Nenhum filme favoritado</span>
       </div>
+      <FavoritesItem v-else v-for="movie in getFavoritesItems" :key="movie.id" :movie="movie" />
     </div>
   </AppDrawer>
 </template>

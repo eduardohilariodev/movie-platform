@@ -3,6 +3,9 @@ import { HeartIcon } from 'lucide-vue-next'
 import { useFavoriteStore } from '@/stores/favorite'
 import type { Movie } from '@/types'
 import BaseButton from '@/components/base/BaseButton.vue'
+import { useDrawerStore } from '@/stores/drawer'
+
+const drawerStore = useDrawerStore()
 
 const props = defineProps<{
   movie: Movie
@@ -13,7 +16,7 @@ const favoriteStore = useFavoriteStore()
 
 const toggleFavorite = () => {
   if (props.isActive) {
-    favoriteStore.removeFavorite(props.movie)
+    drawerStore.open('favorites')
   } else {
     favoriteStore.addFavorite(props.movie)
   }
@@ -25,7 +28,7 @@ const toggleFavorite = () => {
     rounded
     size="icon"
     :variant="isActive ? 'default' : 'outline'"
-    :tooltipText="isActive ? 'Remover dos favoritos' : 'Adicionar aos favoritos'"
+    :tooltipText="isActive ? 'Ver Favoritos' : 'Adicionar aos favoritos'"
     @click="toggleFavorite"
   >
     <HeartIcon :fill="isActive ? 'currentColor' : 'none'" :size="18" />

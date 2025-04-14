@@ -3,7 +3,7 @@ import type { Movie } from '@/types'
 import { computed } from 'vue'
 import { useFavoriteStore } from '@/stores/favorite'
 import { useCurrency } from '@/composables/currency'
-import LikeButton from '@/components/composed/LikeButton.vue'
+import FavoriteButton from '@/components/features/favorites/FavoriteButton.vue'
 import { StarIcon } from 'lucide-vue-next'
 import CartButton from '@/components/features/cart/CartButton.vue'
 
@@ -51,7 +51,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
         </div>
       </div>
       <div class="flex w-full justify-end gap-2">
-        <LikeButton :movie="movie" :is-active="!!isInFavorites" />
+        <FavoriteButton :movie="movie" :is-active="!!isInFavorites" />
         <CartButton :movie="movie" />
       </div>
     </div>
