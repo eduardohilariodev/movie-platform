@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { Movie } from '@/types'
 import { useCartStore } from '@/stores/cart'
-import { Button } from '@/components/ui/button'
-import { Trash } from 'lucide-vue-next'
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { useCurrency } from '@/composables/currency'
+import TrashButton from '@/components/composed/TrashButton.vue'
 
 const props = defineProps<{
   movie: Movie
@@ -30,9 +29,8 @@ const { formatCurrency } = useCurrency()
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
-          <Button variant="outline" @click="cartStore.removeItem(props.movie)">
-            <Trash class="h-4 w-4" /> </Button
-        ></TooltipTrigger>
+          <TrashButton :onClick="() => cartStore.removeItem(props.movie)" />
+        </TooltipTrigger>
         <TooltipContent>
           <p>Remover do carrinho</p>
         </TooltipContent>

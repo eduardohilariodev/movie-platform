@@ -4,6 +4,7 @@ import { ref, watch } from 'vue'
 const props = defineProps<{
   isOpen: boolean
   position?: 'right' | 'left'
+  title?: string
 }>()
 
 const emit = defineEmits<{
@@ -54,13 +55,20 @@ function closeDrawer() {
   ></div>
   <div
     :class="[
-      'animate__animated fixed top-0 bottom-0 z-50 m-4 flex h-screen min-w-72 flex-col rounded-md border-2 bg-neutral-100 p-4',
+      'animate__animated fixed top-0 bottom-0 z-50 m-4 flex h-screen min-w-72 flex-col rounded-md border-2 border-neutral-200/12 bg-neutral-950/95 p-4',
       props.position === 'left' ? 'left-0' : 'right-0',
       animationClass,
     ]"
     v-show="isVisible || isOpen"
     @click.stop
   >
-    <slot></slot>
+    <header class="flex items-center justify-between">
+      <h2 class="text-lg font-bold text-neutral-100">{{ title }}</h2>
+      <slot name="header-actions"></slot>
+    </header>
+    <div class="flex-1">
+      <slot></slot>
+    </div>
+    <slot name="footer"></slot>
   </div>
 </template>

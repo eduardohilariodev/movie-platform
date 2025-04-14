@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import SearchInput from '@/components/SearchInput.vue'
+import SearchInput from '@/components/composed/SearchInput.vue'
 import { RouterLink } from 'vue-router'
-import CartButton from '@/components/CartButton.vue'
-import FavoritesButton from '../FavoritesButton.vue'
+import AppbarCartButton from '@/components/features/cart/AppbarCartButton.vue'
+import FavoritesButton from '../features/favorites/FavoritesButton.vue'
 </script>
 
 <template>
@@ -17,7 +17,7 @@ import FavoritesButton from '../FavoritesButton.vue'
     <SearchInput />
     <div class="flex items-center gap-4">
       <FavoritesButton />
-      <CartButton />
+      <AppbarCartButton />
     </div>
   </header>
 </template>

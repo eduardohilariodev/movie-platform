@@ -7,7 +7,7 @@
     "css": "src/styles/globals.css",
     "baseColor": "neutral",
     "cssVariables": true,
-    "prefix": ""
+    "prefix": "Sc"
   },
   "aliases": {
     "components": "@/components",

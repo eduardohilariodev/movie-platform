@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Movie } from '@/types'
-import { Button } from '@/components/ui/button'
+import { ScButton } from '@/components/ui/button'
 import { useCartStore } from '@/stores/cart'
 import { computed } from 'vue'
 import { useFavoriteStore } from '@/stores/favorite'
@@ -50,7 +50,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
       </div>
       <LikeButton :movie="movie" :is-active="!!isInFavorites" />
       <div class="flex w-full gap-2">
-        <Button
+        <ScButton
           class="w-full rounded-full bg-white text-black hover:bg-neutral-100"
           :class="
             isInCart && 'border border-neutral-100 bg-transparent text-white hover:bg-neutral-900'
@@ -58,7 +58,7 @@ const isInFavorites = computed(() => favoriteStore.favorites.find((i) => i.id ==
           @click="isInCart ? cartStore.removeItem(movie) : cartStore.addItem(movie)"
         >
           {{ isInCart ? 'Remover' : 'Adicionar' }}
-        </Button>
+        </ScButton>
       </div>
     </div>
   </div>

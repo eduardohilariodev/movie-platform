@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { Movie } from '@/types'
 import { useCartStore } from '@/stores/cart'
-import { Button } from '@/components/ui/button'
-import { ShoppingCart, Trash } from 'lucide-vue-next'
+import { ScButton } from '@/components/ui/button'
+import { ShoppingCart } from 'lucide-vue-next'
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { useFavoriteStore } from '@/stores/favorite'
 import { useCurrency } from '@/composables/currency'
+import TrashButton from '@/components/composed/TrashButton.vue'
+
 const props = defineProps<{
   movie: Movie
 }>()
@@ -32,9 +34,9 @@ const { formatCurrency } = useCurrency()
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <Button variant="outline" @click="cartStore.addItem(props.movie)">
+            <ScButton variant="outline" @click="cartStore.addItem(props.movie)">
               <ShoppingCart class="h-4 w-4" />
-            </Button>
+            </ScButton>
           </TooltipTrigger>
           <TooltipContent>
             <p>Adicionar ao carrinho</p>
@@ -45,9 +47,7 @@ const { formatCurrency } = useCurrency()
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <Button variant="outline" @click="favoriteStore.removeFavorite(props.movie)">
-              <Trash class="h-4 w-4" />
-            </Button>
+            <TrashButton :onClick="() => favoriteStore.removeFavorite(props.movie)" />
           </TooltipTrigger>
           <TooltipContent>
             <p>Remover dos favoritos</p>

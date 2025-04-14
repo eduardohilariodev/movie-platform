@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MovieCard from '@/components/MovieCard.vue'
-import MovieSkeleton from '@/components/MovieSkeleton.vue'
+import MovieCard from '@/components/features/movie/MovieCard.vue'
+import MovieSkeleton from '@/components/features/movie/MovieSkeleton.vue'
 import { useMovieStore } from '@/stores/movie'
 import { useAuthStore } from '@/stores/auth'
 import { onMounted } from 'vue'

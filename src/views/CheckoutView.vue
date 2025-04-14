@@ -17,7 +17,7 @@ import * as z from 'zod'
 import { vMaska } from 'maska/vue'
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Button } from '@/components/ui/button'
+import { ScButton } from '@/components/ui/button'
 import { useCurrency } from '@/composables/currency'
 const cartStore = useCartStore()
 const { getCartItems, isSuccessDialogOpen } = storeToRefs(cartStore)
@@ -282,7 +282,9 @@ const onSubmit = handleSubmit((values) => {
             </div>
           </div>
 
-          <Button type="submit" class="mt-6 w-full" @click="onSubmit"> Finalizar compra </Button>
+          <ScButton type="submit" class="mt-6 w-full" @click="onSubmit">
+            Finalizar compra
+          </ScButton>
         </div>
         <div v-else class="py-8 text-center text-gray-500">Seu carrinho está vazio</div>
       </div>
