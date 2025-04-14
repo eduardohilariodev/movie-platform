@@ -38,7 +38,7 @@ useIntersectionObserver(
 
 <template>
   <div
-    class="mx-auto grid max-w-screen-md grid-flow-dense grid-cols-2 gap-6 px-10 py-24 md:grid-cols-3 md:px-8 lg:max-w-screen-lg"
+    class="mx-auto grid max-w-screen-xl grid-flow-dense grid-cols-1 gap-4 px-4 py-24 sm:grid-cols-1 sm:gap-6 sm:px-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
     <template v-if="isRecommendationsLoading && movies.length === 0">
       <MovieSkeleton v-for="i in 8" :key="i" />

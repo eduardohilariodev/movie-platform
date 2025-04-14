@@ -15,12 +15,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col pt-24">
+  <div class="flex min-h-screen flex-col pt-2 sm:pt-22 lg:pt-24">
     <div class="magicpattern fixed inset-0 z-[-1]"></div>
     <Toaster />
     <AppHeader />
 
-    <main class="flex-1">
+    <main class="flex-1 px-4 sm:px-6 lg:px-8">
       <FavoritesDrawer />
       <CartDrawer />
       <RouterView />

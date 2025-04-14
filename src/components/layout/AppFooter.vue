@@ -18,12 +18,12 @@ const currentYear = new Date().getFullYear()
   >
     <div class="container mx-auto px-4">
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div class="flex items-center gap-2 text-neutral-400">
+        <div class="hidden items-center gap-2 text-neutral-400 md:flex">
           <span class="text-xl tracking-widest">SONATA </span>
           <span class="text-sm text-neutral-400">© {{ currentYear }}</span>
         </div>
 
-        <div class="flex items-center gap-6">
+        <div class="hidden items-center gap-6 md:flex">
           <span class="text-sm text-neutral-400"> Made with 💚 by Eduardo Hilário</span>
         </div>
 
@@ -42,7 +42,9 @@ const currentYear = new Date().getFullYear()
             <Tooltip>
               <TooltipTrigger asChild>
                 <a href="https://eduardohilariodev.com" target="_blank">
-                  <div class="h-12 w-12 transition-all duration-300 hover:scale-110">
+                  <div
+                    class="h-10 w-10 transition-all duration-300 hover:scale-110 md:h-12 md:w-12"
+                  >
                     <svg
                       class="h-full w-full text-neutral-400 transition-colors hover:text-white"
                       viewBox="0 0 500 246.54"

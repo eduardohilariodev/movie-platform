@@ -7,15 +7,15 @@ import FavoritesButton from '../features/favorites/AppbarFavoritesButton.vue'
 
 <template>
   <header
-    class="fixed top-8 right-0 left-0 z-50 mx-auto my-0 flex max-w-[calc(100%-4rem)] items-center justify-between rounded-full border-2 border-neutral-200/12 bg-neutral-900/40 px-8 py-4 shadow-sm backdrop-blur-md sm:max-w-screen-sm lg:max-w-screen-md"
+    class="fixed top-4 right-0 left-0 z-50 mx-auto my-0 flex w-[calc(100%-2rem)] items-center justify-between rounded-full border-2 border-neutral-200/12 bg-neutral-900/40 px-4 py-3 shadow-sm backdrop-blur-md sm:top-8 sm:max-w-[calc(100%-4rem)] sm:max-w-screen-sm sm:px-8 sm:py-4 lg:max-w-screen-md"
   >
     <nav>
       <RouterLink to="/">
-        <h1 class="text-2xl tracking-widest text-neutral-100">SONATA</h1>
+        <h1 class="text-xl tracking-widest text-neutral-100 sm:text-2xl">SONATA</h1>
       </RouterLink>
     </nav>
-    <SearchInput />
-    <div class="flex items-center gap-4">
+    <SearchInput class="hidden sm:block" />
+    <div class="flex items-center gap-2 sm:gap-4">
       <FavoritesButton />
       <AppbarCartButton />
     </div>
