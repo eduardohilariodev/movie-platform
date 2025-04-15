@@ -131,8 +131,7 @@ const movies = computed(() => movieStore.filteredMovies)
               :key="movie.id"
               :value="movie"
               class="group cursor-pointer px-2 py-2 hover:bg-neutral-800 data-[focused]:bg-neutral-800 md:px-4 md:py-3"
-              @click="addToCart(movie)"
-              @keydown.enter="addToCart(movie)"
+              @select="addToCart(movie)"
             >
               <div class="flex items-center gap-3">
                 <img
