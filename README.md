@@ -2,11 +2,11 @@
 >
 > A modern Vue 3, TypeScript, and Tailwind CSS application simulating a movie browsing platform with a shopping cart and checkout.
 
-## ✨ Demonstração Visual (Visual Demonstration)
+## ✨ Visual Demonstration
 
 *(Add screenshots or GIFs showcasing key features like the movie grid, infinite scroll, cart, and checkout form)*
 
-## 📋 Sobre o Projeto (About the Project)
+## 📋 About the Project
 
 This project serves as a practical demonstration of modern frontend development techniques using the Vue 3 ecosystem. It simulates a common e-commerce flow—browsing items (movies), adding them to a cart, and proceeding through a multi-step checkout process.
 
@@ -18,7 +18,7 @@ The primary motivation was to build a visually appealing, highly responsive appl
 - **UI/UX Best Practices:** Implementing features like infinite scrolling, skeleton loading, and form validation for a better user experience.
 - **Modern Tooling:** Utilizing Vite, TypeScript, and Tailwind CSS for an efficient development workflow.
 
-## 🛠️ Tecnologias Utilizadas (Technologies Used)
+## 🛠️ Technologies Used
 
 This project leverages a modern frontend stack:
 
@@ -42,7 +42,7 @@ This project leverages a modern frontend stack:
   - Custom composables (e.g., `useCurrency`)
 - **Code Quality:** ESLint & Prettier
 
-## 🏗️ Arquitetura do Projeto (Project Architecture)
+## 🏗️ Project Architecture
 
 The project follows a standard component-based architecture, organized for clarity and maintainability:
 
@@ -71,14 +71,14 @@ Key architectural decisions:
 - **Pinia:** Preferred over Vuex for its simpler API, better TypeScript support, and modularity.
 - **Utility-First CSS:** Tailwind CSS allows for rapid development and consistent styling without leaving the HTML/template.
 
-## ⚙️ Instalação e Configuração (Installation and Setup)
+## ⚙️ Installation and Setup
 
-### Pré-requisitos (Prerequisites)
+### Prerequisites
 
 - Node.js (Check `.nvmrc` or specify version, e.g., v18+)
 - npm or bun
 
-### Passos para Instalação (Installation Steps)
+### Installation Steps
 
 1. **Clone the repository:**
 
@@ -118,7 +118,7 @@ Key architectural decisions:
 
 5. Open your browser to `http://localhost:5173` (or the port specified by Vite).
 
-## 🚀 Uso e Funcionalidades (Usage and Features)
+## 🚀 Usage and Features
 
 - **Movie Browsing:** Displays a grid of movies fetched from an API (e.g., TMDB).
 - **Infinite Scrolling:** Automatically loads more movies as the user scrolls down, using `useIntersectionObserver` to trigger API calls for the next page.
@@ -136,7 +136,7 @@ Key architectural decisions:
 
 *(Consider adding small GIFs here to demonstrate specific features like adding to cart or the form validation)*
 
-## 🧩 Desafios e Soluções (Challenges and Solutions)
+## 🧩 Challenges and Solutions
 
 ### Challenge 1: Implementing Smooth Infinite Scroll
 
@@ -150,7 +150,7 @@ Key architectural decisions:
 
 *(Add another challenge if applicable, e.g., managing complex form state, synchronizing cart state, etc.)*
 
-## 🔮 Próximos Passos (Next Steps)
+## 🔮 Next Steps
 
 While this project serves as a demonstration, potential future enhancements could include:
 
@@ -162,7 +162,7 @@ While this project serves as a demonstration, potential future enhancements coul
 - [ ] Improving accessibility (WCAG compliance).
 - [ ] Refactoring CSS for better custom property usage with Tailwind.
 
-## 🤝 Contribuição (Contributing)
+## 🤝 Contributing
 
 This is primarily a showcase project, but contributions or suggestions are welcome! If you have ideas for improvement:
 
@@ -175,12 +175,12 @@ This is primarily a showcase project, but contributions or suggestions are welco
 
 Please ensure any code contributions adhere to the existing style (ESLint/Prettier) and include relevant updates to documentation if necessary.
 
-## 📄 Licença (License)
+## 📄 License
 
 *(Specify your license here, e.g., MIT)*
 This project is licensed under the MIT License - see the `LICENSE` file for details (if you have one).
 
-## 📬 Contato (Contact)
+## 📬 Contact
 
 Your Name - <your.email@example.com>
 
