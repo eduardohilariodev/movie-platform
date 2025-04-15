@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { motion, AnimatePresence } from 'motion-v'
+import { motion, AnimatePresence } from 'motion-v';
 
 const props = withDefaults(
   defineProps<{

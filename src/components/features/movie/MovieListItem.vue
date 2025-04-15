@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Movie } from '@/types'
-import { useCurrency } from '@/composables/currency'
+import type { Movie } from '@/types';
+import { useCurrency } from '@/composables/currency';
 
 const props = defineProps<{
   movie: Movie

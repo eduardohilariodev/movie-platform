@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 import {
   AlertDialogContent,
   type AlertDialogContentEmits,
@@ -7,8 +7,8 @@ import {
   AlertDialogOverlay,
   AlertDialogPortal,
   useForwardPropsEmits,
-} from 'reka-ui'
-import { computed, type HTMLAttributes } from 'vue'
+} from 'reka-ui';
+import { computed, type HTMLAttributes } from 'vue';
 
 const props = defineProps<AlertDialogContentProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<AlertDialogContentEmits>()

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Trash } from 'lucide-vue-next'
-import BaseButton from '@/components/base/BaseButton.vue'
+import { Trash } from 'lucide-vue-next';
+import BaseButton from '@/components/base/BaseButton.vue';
 
 const props = defineProps<{
   onClick: () => void

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ScButton } from '@/components/ui/button'
-import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
+import { ScButton } from '@/components/ui/button';
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 const props = withDefaults(
   defineProps<{
