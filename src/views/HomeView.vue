@@ -9,7 +9,7 @@ import { storeToRefs } from 'pinia'
 const movieStore = useMovieStore()
 const authStore = useAuthStore()
 
-const { isRecommendationsLoading, movies, currentPage } = storeToRefs(movieStore)
+const { isRecommendationsLoading, movies, currentRecommendationsPage } = storeToRefs(movieStore)
 const loadingMore = ref(false)
 
 onMounted(() => {
@@ -27,7 +27,7 @@ useIntersectionObserver(
   ([{ isIntersecting }]) => {
     if (isIntersecting && !isRecommendationsLoading.value && !loadingMore.value) {
       loadingMore.value = true
-      movieStore.fetchMovies(currentPage.value + 1).finally(() => {
+      movieStore.fetchMovies(currentRecommendationsPage.value + 1).finally(() => {
         loadingMore.value = false
       })
     }
@@ -38,7 +38,7 @@ useIntersectionObserver(
 
 <template>
   <div
-    class="mx-auto grid max-w-screen-xl grid-flow-dense grid-cols-1 gap-4 px-4 py-24 sm:grid-cols-1 sm:gap-6 sm:px-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    class="pointer-events-none mx-auto grid max-w-screen-xl grid-flow-dense grid-cols-1 gap-4 px-4 py-24 sm:grid-cols-1 sm:gap-6 sm:px-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
     <template v-if="isRecommendationsLoading && movies.length === 0">
       <MovieSkeleton v-for="i in 8" :key="i" />
