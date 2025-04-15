@@ -96,6 +96,28 @@ Key architectural decisions:
     4. Managed distinct loading states (`isRecommendationsLoading` for initial load, `loadingMore` for subsequent fetches) to show appropriate feedback (skeleton vs. spinner) and prevent duplicate requests.
 - **Outcome:** A seamless browsing experience where movies load progressively as the user scrolls, keeping the initial load fast and UI responsive.
 
+### Challenge 2: Structuring State with Pinia
+
+- **Problem:** Organizing application state (movies, cart, user preferences, form data) in a scalable, type-safe, and easily testable manner. Managing asynchronous data fetching and state mutations cleanly.
+- **Solution:**
+    1. Adopted Pinia as the central state management library due to its simplicity, excellent TypeScript support, and modular nature.
+    2. Created separate stores for distinct domains (`movieStore`, `cartStore`, `checkoutFormStore`, etc.) located in `src/stores/`.
+    3. Defined state properties, getters (computed state), and actions (methods for mutations and async operations) within each store using the Composition API syntax.
+    4. Leveraged TypeScript interfaces/types (`src/types/`) to strongly type the state, getters, and action payloads/return values.
+    5. Handled API interactions within Pinia actions, updating the store's state upon successful fetching or error handling.
+- **Outcome:** Clear separation of concerns for state management, improved code organization and maintainability, enhanced type safety reducing potential runtime errors, and simplified component logic by centralizing state access and modifications.
+
+### Challenge 3: Managing Exclusive UI States (e.g., Drawers)
+
+- **Problem:** Ensuring that only one overlay or drawer component (like the shopping cart, filters, or a user menu) is active/visible at any given time to prevent UI clutter and maintain a focused user experience. Coordinating the open/close state across potentially unrelated components.
+- **Solution:**
+    1. Implemented a dedicated Pinia store (`uiStore`) or a custom composable (`useUIState`) to manage global UI state, including which drawer (if any) is currently open.
+    2. Defined state properties in the store/composable (e.g., `activeDrawer: 'cart' | 'filters' | null`).
+    3. Components responsible for opening a drawer would call an action/method (e.g., `uiStore.openDrawer('cart')`) which updates the `activeDrawer` state.
+    4. Drawer components themselves would use this state (or a computed property based on it) to control their visibility (`v-if="uiStore.activeDrawer === 'cart'"`).
+    5. Closing a drawer would involve setting `activeDrawer` back to `null`. Actions to open a drawer could implicitly close any currently open one.
+- **Outcome:** Consistent and predictable UI behavior where only one drawer is displayed at a time. Centralized control simplifies state synchronization and avoids prop drilling or complex event emissions for managing visibility across the application.
+
 ## ⚙️ Installation and Setup
 
 ### Prerequisites
