@@ -52,20 +52,22 @@ const drawerVariants = {
       :animate="'visible'"
       :exit="'hidden'"
       @click="closeDrawer"
+      @mousedown.prevent
     ></motion.div>
   </AnimatePresence>
 
   <AnimatePresence>
     <motion.div
       v-if="isOpen"
-      class="fixed top-30 right-0 bottom-24 z-50 m-4 flex min-w-96 flex-col rounded-md border-2 border-neutral-200/12 bg-neutral-950/95 p-4"
+      class="fixed top-20 right-0 bottom-24 z-50 m-4 flex flex-col rounded-md border-2 border-neutral-200/12 bg-neutral-950/95 p-4 md:top-30 md:min-w-96"
       :variants="drawerVariants"
       :initial="'hidden'"
       :animate="'visible'"
       :exit="'hidden'"
       @click.stop
+      @mousedown.prevent
     >
-      <div class="mt-2 mb-6 flex items-center justify-between">
+      <div class="mt-2 mb-6 flex items-center justify-between" @mousedown.prevent>
         <h2 class="text-2xl font-bold text-neutral-100">{{ title }}</h2>
         <slot name="header-actions"></slot>
       </div>
