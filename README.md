@@ -48,20 +48,15 @@ The project follows a standard component-based architecture, organized for clari
 
 ```
 src/
-├── assets/          # Static assets (images, fonts)
-├── components/
-│   ├── base/        # Generic, reusable base components (Button, Input, etc.)
-│   ├── ui/          # More complex UI elements (Card, Modal, etc.)
-│   └── features/    # Components specific to features (MovieList, CartView, CheckoutForm)
-├── composables/     # Reusable Vue Composition API functions (useCurrency, etc.)
-├── layouts/         # Main application layout structures
-├── pages/           # Top-level view components mapped to routes
-├── router/          # Vue Router configuration (routes, guards)
-├── services/        # API interaction logic (could be part of stores)
-├── stores/          # Pinia state management modules (movies, cart, form)
+├── components/      # UI Components (base, ui, features)
+├── composables/     # Reusable Vue Composition API functions
+├── lib/             # External libraries or integrations
+├── router/          # Vue Router configuration
+├── stores/          # Pinia state management modules
 ├── styles/          # Global styles, Tailwind config
 ├── types/           # TypeScript type definitions
-├── utils/           # Utility functions
+├── views/           # Page-level components mapped to routes
+├── App.vue          # Root Vue component
 └── main.ts          # Application entry point
 ```
 
