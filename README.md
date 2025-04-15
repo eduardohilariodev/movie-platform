@@ -1,6 +1,15 @@
 # Vue Movie Platform Showcase
 >
-> A modern Vue 3, TypeScript, and Tailwind CSS application simulating a movie browsing platform with a shopping cart and checkout.
+> A modern Vue 3, TypeScript, and Tailwind CSS application simulating a movie
+> browsing platform with a shopping cart and checkout.
+
+## 📬 Contact
+
+Eduardo Hilário - <eduardohilariodev@pm.me>
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-eduardohilariodev-blue)](https://linkedin.com/in/eduardohilariodev)
+[![Portfolio](https://img.shields.io/badge/Portfolio-eduardohilariodev.com-brightgreen)](https://eduardohilariodev.com)
+[![GitHub](https://img.shields.io/badge/GitHub-eduardohilariodev-gray)](https://github.com/eduardohilariodev)
 
 ## ✨ Visual Demonstration
 
@@ -182,13 +191,3 @@ Please ensure any code contributions adhere to the existing style (ESLint/Pretti
 
 *(Specify your license here, e.g., MIT)*
 This project is licensed under the MIT License - see the `LICENSE` file for details (if you have one).
-
-## 📬 Contact
-
-Eduardo Hilário - <eduardohilariodev@pm.me>
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-YourName-blue)](https://linkedin.com/in/eduardohilariodev)
-[![Portfolio](https://img.shields.io/badge/Portfolio-yourwebsite.com-brightgreen)](https://eduardohilariodev.com)
-[![GitHub](https://img.shields.io/badge/GitHub-YourUsername-gray)](https://github.com/eduardohilariodev)
-
-Project Link: [https://github.com/eduardohilariodev/movie-platform](https://github.com/eduardohilariodev/movie-platform)
