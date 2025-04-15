@@ -136,4 +136,59 @@ Key architectural decisions:
 
 2. **Install dependencies:**
 
+    ```bash
+    # Using npm
+    npm install
+
+    # Or using bun
+    bun install
     ```
+
+3. **Environment Variables:**
+    - Create a `.env` file in the root directory by copying `.env.example` (if it exists).
+    - Add necessary environment variables. Example:
+
+        ```env
+        VITE_API_BASE_URL=https://your.api.endpoint # e.g., TMDB API
+        VITE_API_KEY=your_api_key
+        ```
+
+4. **Run the development server:**
+
+    ```bash
+    # Using npm
+    npm run dev
+
+    # Or using bun
+    bun dev
+    ```
+
+5. Open your browser to `http://localhost:5173` (or the port specified by Vite).
+
+## 🤝 Contributing
+
+This is primarily a showcase project, but contributions or suggestions are welcome! If you have ideas for improvement:
+
+1. **Fork the repository.**
+2. **Create a new branch:** `git checkout -b feature/your-improvement`
+3. **Make your changes.**
+4. **Commit your changes:** `git commit -m 'feat: Add some feature'`
+5. **Push to the branch:** `git push origin feature/your-improvement`
+6. **Open a Pull Request.**
+
+Please ensure any code contributions adhere to the existing style (ESLint/Prettier) and include relevant updates to documentation if necessary.
+
+## 📄 License
+
+*(Specify your license here, e.g., MIT)*
+This project is licensed under the MIT License - see the `LICENSE` file for details (if you have one).
+
+## 📬 Contact
+
+Eduardo Hilário - <eduardohilariodev@pm.me>
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-YourName-blue)](https://linkedin.com/in/eduardohilariodev)
+[![Portfolio](https://img.shields.io/badge/Portfolio-yourwebsite.com-brightgreen)](https://eduardohilariodev.com)
+[![GitHub](https://img.shields.io/badge/GitHub-YourUsername-gray)](https://github.com/eduardohilariodev)
+
+Project Link: [https://github.com/eduardohilariodev/movie-platform](https://github.com/eduardohilariodev/movie-platform)
