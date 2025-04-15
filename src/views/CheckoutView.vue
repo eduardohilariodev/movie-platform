@@ -81,11 +81,11 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-screen-lg px-10 py-24 md:px-8">
+  <div class="mx-auto max-w-screen-lg px-4 py-16 pt-24 md:px-8 md:py-24">
     <h1 class="mb-6 text-2xl font-bold text-white">Finalizar Compra</h1>
 
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <div class="rounded-lg border border-gray-800 bg-black/30 p-6 shadow backdrop-blur-md">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+      <div class="rounded-lg border border-gray-800 bg-black/30 p-4 shadow backdrop-blur-md md:p-6">
         <form @submit.prevent="onSubmit" class="space-y-6">
           <!-- Dados Pessoais -->
           <div>
@@ -230,7 +230,7 @@ const onSubmit = handleSubmit((values) => {
       </div>
 
       <div
-        class="flex h-[600px] flex-col rounded-lg border border-gray-800 bg-black/30 p-6 shadow backdrop-blur-md"
+        class="flex h-[600px] flex-col rounded-lg border border-gray-800 bg-black/30 p-4 shadow backdrop-blur-md md:p-6"
       >
         <div v-if="items.length > 0" class="flex h-full flex-col gap-4">
           <div class="mb-4 contents flex-grow gap-4 overflow-y-auto">

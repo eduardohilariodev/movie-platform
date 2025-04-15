@@ -105,7 +105,7 @@ const movies = computed(() => movieStore.filteredMovies)
             placeholder="Encontre seu filme..."
             @input="handleInput"
             @blur="closeSearchInput"
-            class="w-full pr-10"
+            class="w-full px-2 pr-10 md:px-3"
             :autofocus="searchStore.isSearchActive"
           />
           <button
@@ -119,9 +119,9 @@ const movies = computed(() => movieStore.filteredMovies)
 
         <ComboboxList
           v-if="searchStore.searchQuery"
-          class="max-h-[70vh] w-full overflow-y-auto rounded-lg border-2 border-neutral-200/12 bg-neutral-900 py-2 backdrop-blur-lg"
+          class="scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-neutral-900 max-h-[70vh] w-full overflow-y-auto rounded-lg border-2 border-neutral-200/12 bg-neutral-900 py-1 backdrop-blur-lg md:py-2"
         >
-          <ComboboxEmpty class="px-4 py-3 text-sm text-neutral-300">
+          <ComboboxEmpty class="px-2 py-2 text-sm text-neutral-300 md:px-4 md:py-3">
             Nenhum filme encontrado.
           </ComboboxEmpty>
 
@@ -130,7 +130,7 @@ const movies = computed(() => movieStore.filteredMovies)
               v-for="movie in movies"
               :key="movie.id"
               :value="movie"
-              class="group cursor-pointer px-4 py-3 hover:bg-neutral-800 data-[focused]:bg-neutral-100"
+              class="group cursor-pointer px-2 py-2 hover:bg-neutral-800 data-[focused]:bg-neutral-800 md:px-4 md:py-3"
               @click="addToCart(movie)"
               @keydown.enter="addToCart(movie)"
             >
@@ -143,11 +143,11 @@ const movies = computed(() => movieStore.filteredMovies)
                 />
                 <div class="flex-1">
                   <div
-                    class="text-sm font-medium text-neutral-100 group-data-[focused]:text-neutral-900"
+                    class="text-sm font-medium text-neutral-100 group-data-[focused]:text-neutral-100"
                   >
                     {{ movie.title }}
                   </div>
-                  <div class="text-xs text-neutral-300 group-data-[focused]:text-neutral-700">
+                  <div class="text-xs text-neutral-300 group-data-[focused]:text-neutral-300">
                     {{ movie.genre }} - {{ new Date(movie.releaseDate).getFullYear() }}
                   </div>
                 </div>
