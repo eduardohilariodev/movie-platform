@@ -1,4 +1,4 @@
-# Vue Movie Platform Showcase
+# SONATA: Movie Platform Showcase in Vue.js
 >
 > A modern Vue 3, TypeScript, and Tailwind CSS application simulating a movie
 > browsing platform with a shopping cart and checkout.
