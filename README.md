@@ -66,6 +66,36 @@ Key architectural decisions:
 - **Pinia:** Preferred over Vuex for its simpler API, better TypeScript support, and modularity.
 - **Utility-First CSS:** Tailwind CSS allows for rapid development and consistent styling without leaving the HTML/template.
 
+## 🚀 Usage and Features
+
+- **Movie Browsing:** Displays a grid of movies fetched from an API (e.g., TMDB).
+- **Infinite Scrolling:** Automatically loads more movies as the user scrolls down, using `useIntersectionObserver` to trigger API calls for the next page.
+- **Skeleton Loading:** Shows skeleton placeholders while movie data is being fetched, improving perceived performance.
+- **Shopping Cart:**
+  - Add/remove movies from the cart.
+  - Cart state persists using Pinia and potentially local storage.
+  - View cart details (items, total price).
+- **Checkout Form:**
+  - Multi-step form (e.g., Shipping, Payment).
+  - Client-side validation using VeeValidate + Zod schemas.
+  - Input masking for fields like credit card numbers.
+- **Responsive Design:** Adapts seamlessly to various screen sizes using Tailwind CSS.
+- **Animations:** Subtle UI animations enhance user interaction.
+
+*(Consider adding small GIFs here to demonstrate specific features like adding to cart or the form validation)*
+
+## 🧩 Challenges and Solutions
+
+### Challenge 1: Implementing Smooth Infinite Scroll
+
+- **Problem:** Efficiently displaying a potentially large list of movies fetched from an API without impacting initial page load or requiring pagination clicks, while providing clear loading feedback.
+- **Solution:**
+    1. Fetched the initial set of movies on component mount (`movieStore.fetchMovies()`).
+    2. Used `@vueuse/core`'s `useIntersectionObserver` to monitor a target element near the bottom of the movie list.
+    3. When the target became visible and data wasn't already loading (`!movieStore.loadingMore`), triggered the `fetchMovies` action again with the next page number.
+    4. Managed distinct loading states (`isRecommendationsLoading` for initial load, `loadingMore` for subsequent fetches) to show appropriate feedback (skeleton vs. spinner) and prevent duplicate requests.
+- **Outcome:** A seamless browsing experience where movies load progressively as the user scrolls, keeping the initial load fast and UI responsive.
+
 ## ⚙️ Installation and Setup
 
 ### Prerequisites
@@ -112,50 +142,6 @@ Key architectural decisions:
     ```
 
 5. Open your browser to `http://localhost:5173` (or the port specified by Vite).
-
-## 🚀 Usage and Features
-
-- **Movie Browsing:** Displays a grid of movies fetched from an API (e.g., TMDB).
-- **Infinite Scrolling:** Automatically loads more movies as the user scrolls down, using `useIntersectionObserver` to trigger API calls for the next page.
-- **Skeleton Loading:** Shows skeleton placeholders while movie data is being fetched, improving perceived performance.
-- **Shopping Cart:**
-  - Add/remove movies from the cart.
-  - Cart state persists using Pinia and potentially local storage.
-  - View cart details (items, total price).
-- **Checkout Form:**
-  - Multi-step form (e.g., Shipping, Payment).
-  - Client-side validation using VeeValidate + Zod schemas.
-  - Input masking for fields like credit card numbers.
-- **Responsive Design:** Adapts seamlessly to various screen sizes using Tailwind CSS.
-- **Animations:** Subtle UI animations enhance user interaction.
-
-*(Consider adding small GIFs here to demonstrate specific features like adding to cart or the form validation)*
-
-## 🧩 Challenges and Solutions
-
-### Challenge 1: Implementing Smooth Infinite Scroll
-
-- **Problem:** Efficiently displaying a potentially large list of movies fetched from an API without impacting initial page load or requiring pagination clicks, while providing clear loading feedback.
-- **Solution:**
-    1. Fetched the initial set of movies on component mount (`movieStore.fetchMovies()`).
-    2. Used `@vueuse/core`'s `useIntersectionObserver` to monitor a target element near the bottom of the movie list.
-    3. When the target became visible and data wasn't already loading (`!movieStore.loadingMore`), triggered the `fetchMovies` action again with the next page number.
-    4. Managed distinct loading states (`isRecommendationsLoading` for initial load, `loadingMore` for subsequent fetches) to show appropriate feedback (skeleton vs. spinner) and prevent duplicate requests.
-- **Outcome:** A seamless browsing experience where movies load progressively as the user scrolls, keeping the initial load fast and UI responsive.
-
-*(Add another challenge if applicable, e.g., managing complex form state, synchronizing cart state, etc.)*
-
-## 🔮 Next Steps
-
-While this project serves as a demonstration, potential future enhancements could include:
-
-- [ ] User authentication (login/signup).
-- [ ] Saving cart/preferences to a backend.
-- [ ] Implementing movie search/filtering functionality.
-- [ ] Adding detailed movie view pages.
-- [ ] Writing unit and end-to-end tests.
-- [ ] Improving accessibility (WCAG compliance).
-- [ ] Refactoring CSS for better custom property usage with Tailwind.
 
 ## 🤝 Contributing
 
